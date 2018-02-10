@@ -6,12 +6,12 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
 
   self.searchPark = function (parkSelected) {
       let apiKey = 'api_key=0HAwxOXCJ9LeZrJ9DFGv9eIYpl0a8tHap2yWMkaq';
-      // getting each park by parkCode
+      // getting each park Description by parkCode
       $http.get(`https://developer.nps.gov/api/v1/parks/?parkCode=${parkSelected}&fields=images&` + apiKey)
       .then(function (response) {
           self.parkList.list = response.data;
           console.log('successful get parks', self.parkList.list);
-          $location.path("/parks");
+          $location.path("/parks/description");
       })
       .catch(function (error) {
           console.log('error on getting parks', error);
