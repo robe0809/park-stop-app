@@ -3,12 +3,12 @@
 
     <div layout="column" layout-align="center center" flex>
         <md-input-container>
-        <label>State</label>
-        <md-select 
-            ng-model="vm.parkSelected"
-            ng-change="vm.searchPark(vm.parkSelected)">
-            <md-option ng-repeat="park in vm.nationalPark">{{park.code}}</md-option>
-        </md-select>
+            <label>State</label>
+            <md-select name="favoriteColor" ng-model="favoriteColor" required>
+                <md-option value="red">Red</md-option>
+                <md-option value="blue">Blue</md-option>
+                <md-option value="green">Green</md-option>
+            </md-select>
         </md-input-container>
         <!-- <select 
         ng-model="vm.parkSelected" 
@@ -16,15 +16,12 @@
         data-ng-options="park.code as park.name for park in vm.nationalPark">
         </select> -->
         <md-input-container>
-        <label>National Park</label>
-        <md-select name="favoriteColor" ng-model="favoriteColor" required>
-            <md-option value="red">Red</md-option>
-            <md-option value="blue">Blue</md-option>
-            <md-option value="green">Green</md-option>
-        </md-select>
-        <div class="errors" ng-messages="myForm.favoriteColor.$error">
-            <div ng-message="required">Required</div>
-        </div>
+            <label>National Park</label>
+            <md-select 
+            ng-model="vm.parkSelected"
+            ng-change="vm.searchPark(vm.parkSelected)">
+                <md-option ng-repeat="park in vm.nationalPark">{{park.code}}</md-option>
+            </md-select>
         </md-input-container>
     </div>
 
