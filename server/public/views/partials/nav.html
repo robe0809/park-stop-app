@@ -1,8 +1,21 @@
-<div class="navbar">
-  <div class="container">
-    <ul>
-      <li><a href="#!user">User Home</a></li>
-      <li><a href="#!info">Info Page</a></li>
-    </ul>
-  </div>
+<div layout="row" layout-align="space-between start">
+  <h4 id="welcome">Hello, {{vm.userObject.userName}}!</h4>
+  <md-button class="md-raised" ng-click="vm.userService.logout()">
+    Logout
+  </md-button>
 </div>
+<md-content class="md-padding"
+  layout="row"
+  layout-align="center center"
+  layout-align="space-between start"
+  layout-margin>
+
+  <md-nav-bar
+    md-no-ink-bar="disableInkBar"
+    md-selected-nav-item="currentNavItem"
+    nav-bar-aria-label="navigation links"
+    flex=20>
+    <md-nav-item md-nav-href="#!user" name="Home">Home</md-nav-item>
+    <md-nav-item md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
+  </md-nav-bar>
+</md-content>

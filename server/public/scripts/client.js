@@ -24,9 +24,18 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         }
       }
     })
-    .when('/info', {
-      templateUrl: '/views/templates/info.html',
-      controller: 'InfoController as vm',
+    .when('/favorites', {
+      templateUrl: '/views/templates/favorites.html',
+      controller: 'FavoriteController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/parks', {
+      templateUrl: '/views/parks.html',
+      controller: 'ParkController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

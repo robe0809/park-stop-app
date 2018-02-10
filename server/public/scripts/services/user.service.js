@@ -2,7 +2,23 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
+  self.parkList = {list: []};
 
+  self.searchPark = function (parkSelected) {
+      let apiKey = 'api_key=0HAwxOXCJ9LeZrJ9DFGv9eIYpl0a8tHap2yWMkaq';
+      // getting each park by parkCode
+      $http.get(`https://developer.nps.gov/api/v1/parks/?parkCode=${parkSelected}&fields=images&` + apiKey)
+      .then(function (response) {
+          self.parkList.list = response.data;
+          console.log('successful get parks', self.parkList.list);
+          $location.path("/parks");
+      })
+      .catch(function (error) {
+          console.log('error on getting parks', error);
+      });
+  }
+
+  // ********* User storage *********
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/api/user').then(function(response) {
