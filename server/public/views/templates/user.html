@@ -1,28 +1,35 @@
-<div ng-include="'views/partials/nav.html'"></div>
-<form name="myForm">
-
-    <div layout="column" layout-align="center center" flex>
-        <md-input-container>
-            <label>State</label>
-            <md-select name="favoriteColor" ng-model="favoriteColor" required>
-                <md-option value="red">Red</md-option>
-                <md-option value="blue">Blue</md-option>
-                <md-option value="green">Green</md-option>
-            </md-select>
-        </md-input-container>
-        <!-- <select 
-        ng-model="vm.parkSelected" 
-        ng-change="vm.searchPark(vm.parkSelected)"
-        data-ng-options="park.code as park.name for park in vm.nationalPark">
-        </select> -->
-        <md-input-container>
-            <label>National Park</label>
-            <md-select 
-            ng-model="vm.parkSelected"
-            ng-change="vm.searchPark(vm.parkSelected)">
-                <md-option ng-repeat="park in vm.nationalPark">{{park.code}}</md-option>
-            </md-select>
-        </md-input-container>
+<div>
+        <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
+        <h1 class="lead">Login</h1>
+        
+        <!-- Login form -->
+        <md-content 
+            layout-align="space-around center"
+            layout-gt-sm="row" 
+            layout-padding >
+            <div 
+                class="form" 
+                layout="column" 
+                layout-align="center center"
+                layout-margin>
+    
+                <!-- Username Input -->
+                <md-input-container>
+                <label layout="center center" for="username">Username</label>
+                <input type="text" ng-model="vm.user.username">
+                </md-input-container>
+    
+                <!-- Password Input -->
+                <md-input-container>
+                <label for="password">Password</label> 
+                <input  type="password" ng-model="vm.user.password">
+                </md-input-container>
+    
+                <!-- Login Button -->
+                <md-button class="md-raised md-primary" ng-click="vm.login()">Log In</md-button>
+                <a href="#!register">Register</a>            
+            </div>
+        </md-content>
     </div>
 
-</form>
+

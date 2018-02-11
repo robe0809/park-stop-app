@@ -1,5 +1,5 @@
-myApp.controller('UserController', ['UserService', function(UserService) {
-  console.log('UserController created');
+myApp.controller('HomeController', ['UserService', function(UserService) {
+  console.log('HomeController created');
   
   var self = this;
 
@@ -301,6 +301,6 @@ myApp.controller('UserController', ['UserService', function(UserService) {
 self.searchPark = function (parkSelected) {
     UserService.searchPark(parkSelected);
 }
-  
+
 
 }]);

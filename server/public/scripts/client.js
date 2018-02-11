@@ -5,19 +5,19 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
   console.log('myApp -- config')
   $routeProvider
     .when('/', {
-      redirectTo: 'home'
+      redirectTo: 'user'
     })
-    .when('/home', {
-      templateUrl: '/views/templates/home.html',
+    .when('/user', {
+      templateUrl: '/views/templates/user.html',
       controller: 'LoginController as vm',
     })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as vm'
     })
-    .when('/user', {
-      templateUrl: '/views/templates/user.html',
-      controller: 'UserController as vm',
+    .when('/home', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'HomeController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
