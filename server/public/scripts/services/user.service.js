@@ -4,6 +4,7 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
   self.userObject = {};
   self.parkList = {list: []};
 
+  // bring over to park service
   self.searchPark = function (parkSelected) {
       let apiKey = 'api_key=0HAwxOXCJ9LeZrJ9DFGv9eIYpl0a8tHap2yWMkaq';
       // getting each park Description by parkCode
@@ -18,7 +19,7 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
       });
   }
 
-  // ********* User storage *********
+  // ********* Getting User Information *********
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/api/user').then(function(response) {
