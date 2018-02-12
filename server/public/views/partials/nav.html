@@ -1,21 +1,26 @@
-<div layout="row" layout-align="space-between start">
+
+<div
+  layout="row" 
+  layout-align="space-between end"
+  class="md-margin">
   <h4 id="welcome">Hello, {{vm.userObject.userName}}!</h4>
-  <md-button class="md-raised" ng-click="vm.userService.logout()">
-    Logout
-  </md-button>
-</div>
-<md-content class="md-padding"
+  <md-content 
+  class="navBarHome"
   layout="row"
-  layout-align="center center"
-  layout-align="space-between start"
-  layout-margin>
+  layout-align="center center">
 
   <md-nav-bar
     md-no-ink-bar="disableInkBar"
     md-selected-nav-item="currentNavItem"
     nav-bar-aria-label="navigation links"
-    flex=20>
-    <md-nav-item md-nav-href="#!home" name="Home">Home</md-nav-item>
-    <md-nav-item md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
+    flex=100>
+    <div>
+      <md-nav-item id="home" md-nav-href="#!home" name="Home">Home</md-nav-item>
+      <md-nav-item id="favorites" md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
+    </div>
   </md-nav-bar>
 </md-content>
+  <md-button class="md-raised" ng-click="vm.userService.logout()">
+    Logout
+  </md-button>
+</div>

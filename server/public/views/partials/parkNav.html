@@ -1,24 +1,35 @@
 <md-content class="md-padding">
-  <div class="parkNavHeader" layout="row" layout-align="center top">
+  <div 
+    class="parkNavHeader" 
+    layout="column" 
+    layout-align="space-between center"
+    ng-repeat="parks in vm.parkList.list.data">
+    
     <md-nav-bar
       md-selected-nav-item="currentNavItem"
       nav-bar-aria-label="navigation links"
       flex=20>
       <div>
-        <md-nav-item md-nav-href="#!user" name="Home">Home</md-nav-item>
+        <md-nav-item md-nav-href="#!home" name="Home">Home</md-nav-item>
         <md-nav-item md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
       </div>
     </md-nav-bar>
+    <h1>
+      {{parks.name}}
+    </h1>
+
   </div>
+
   <div layout="column" layout-align="center center">
     <md-nav-bar
       md-no-ink-bar="disableInkBar"
-      md-selected-nav-item="currentNavItem"
+      md-selected-nav-item="vm.currentNavItem"
       nav-bar-aria-label="navigation links"
       flex=20>
-      <md-nav-item md-nav-href="#!parks/description" name="Description">Description</md-nav-item>
-      <md-nav-item md-nav-href="#!parks/articles" name="Articles">Articles</md-nav-item>
-      <md-nav-item md-nav-href="#!parks/events" name="Events">Events</md-nav-item>
+      {{vm.currentNavItem}}
+      <md-nav-item md-nav-href="#!parks/description" name="Descriptions" ng-model="articles" ng-click="vm.parkDescription()">Description</md-nav-item>
+      <md-nav-item md-nav-href="#!parks/articles" name="Articles" value="articles">Articles</md-nav-item>
+      <md-nav-item md-nav-href="#!parks/events" name="Events" value="events">Events</md-nav-item>
       <md-nav-item md-nav-href="#!parks/gallery" name="Gallery">Gallery</md-nav-item>
       <md-nav-item md-nav-href="#!parks/reviews" name="Reviews">Reviews</md-nav-item>
     </md-nav-bar>

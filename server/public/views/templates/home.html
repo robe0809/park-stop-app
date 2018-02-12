@@ -1,28 +1,25 @@
-<div ng-include="'views/partials/nav.html'"></div>
-<form name="myForm">
-
-    <div layout="column" layout-align="center center" flex>
-        <md-input-container>
-            <label>State</label>
-            <md-select name="favoriteColor" ng-model="favoriteColor" required>
-                <md-option value="red">Red</md-option>
-                <md-option value="blue">Blue</md-option>
-                <md-option value="green">Green</md-option>
-            </md-select>
-        </md-input-container>
-        <!-- <select 
-        ng-model="vm.parkSelected" 
-        ng-change="vm.searchPark(vm.parkSelected)"
-        data-ng-options="park.code as park.name for park in vm.nationalPark">
-        </select> -->
-        <md-input-container>
-            <label>National Park</label>
-            <md-select 
-            ng-model="vm.parkSelected"
-            ng-change="vm.searchPark(vm.parkSelected)">
-                <md-option ng-repeat="park in vm.nationalPark">{{park.code}}</md-option>
-            </md-select>
-        </md-input-container>
-    </div>
-
-</form>
+<div class="homeNav" ng-include="'views/partials/nav.html'"></div>
+<div class="homeBackground">
+    <form 
+        class="nationalParkForm"
+        name="myForm"
+        layout="column"
+        layout-align-xs="end center">
+            <md-input-container>
+                <label>State</label>
+                <md-select name="favoriteColor" ng-model="favoriteColor" required>
+                    <md-option value="red">Red</md-option>
+                    <md-option value="blue">Blue</md-option>
+                    <md-option value="green">Green</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>National Park</label>
+                <md-select 
+                ng-model="vm.parkSelected"
+                ng-change="vm.parkDescription(vm.parkSelected)">
+                    <md-option ng-value="park" ng-repeat="park in vm.nationalPark">{{park.name}}</md-option>
+                </md-select>
+            </md-input-container>
+    </form>
+</div>

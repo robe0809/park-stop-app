@@ -3,6 +3,22 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
 
   var self = this;
   self.userObject = {};
+  self.parkList = {list: []};
+  
+  // ********* Getting Park Description *********
+  self.parkDescription = function (parkSelected) { 
+    let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
+    // getting each park by parkCode
+    $http.get(`https://developer.nps.gov/api/v1/parks?parkCode=${parkSelected.code}&` + apiKey)
+    .then(function (response) {
+        self.parkList.list = response.data;
+        console.log('successful get parks', self.parkList.list);
+        $location.path("/parks/description")
+    })
+    .catch(function (error) {
+        console.log('error on getting parks', error);
+    });
+  }
 
   // ********* Getting User Information *********
   self.getuser = function(){
@@ -30,4 +46,6 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
       $location.path("/user");
     });
   }
+
+
 }]);

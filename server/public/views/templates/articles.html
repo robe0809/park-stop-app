@@ -1,10 +1,6 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
 <div class="parkArticlesView" ng-repeat="parks in vm.parkList.list.data">
-    <h1 class="parkName">{{parks.name}}</h1>
-
     <div ng-repeat="articles in parks">
         {{parks.listingDescription}}
     </div>
-
-    <!-- <h5 class="parkArticle">{{parks.listingDescription}}</h5> -->
 </div>

@@ -2,6 +2,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
 myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
   console.log('myApp -- config')
   $routeProvider
     .when('/', {
@@ -24,6 +25,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         }
       }
     })
+
     .when('/favorites', {
       templateUrl: '/views/templates/favorites.html',
       controller: 'FavoriteController as vm',
@@ -35,14 +37,13 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     })
     .when('/parks/description', {
       templateUrl: '/views/templates/description.html',
-      controller: 'UserController as vm',
+      controller: 'HomeController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
         }
       }
     })
-
     
     // .when('/parks/articles', {
     //   templateUrl: '/views/templates/articles.html',
@@ -53,6 +54,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     //     }
     //   }
     // })
+
     // .when('/parks/events', {
     //   templateUrl: '/views/templates/events.html',
     //   controller: 'ParkController as vm',
