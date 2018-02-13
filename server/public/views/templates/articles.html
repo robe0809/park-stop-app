@@ -1,6 +1,31 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
-<div class="parkArticlesView" ng-repeat="parks in vm.parkList.list.data">
-    <div ng-repeat="articles in parks">
-        {{parks.listingDescription}}
+
+<div class="parkArticlesView">
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+
+    <div flex-xs flex-gt-xs="30" layout="row">
+
+        <md-card ng-repeat="articles in vm.infoList.list.data">
+            <img ng-src="{{articles.listingImage.url}}" class="md-card-image" alt="Washed Out">
+            <md-card-title>
+                <md-card-title-text>
+                <span class="md-headline">Action buttons</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                {{articles.listingDescription}}
+                </p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Action 1</md-button>
+                <md-button>Action 2</md-button>
+            </md-card-actions>
+        </md-card>
+
     </div>
+
+</md-content>
+
 </div>

@@ -35,6 +35,8 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         }
       }
     })
+
+    // routes to description page
     .when('/parks/description', {
       templateUrl: '/views/templates/description.html',
       controller: 'HomeController as vm',
@@ -45,34 +47,38 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       }
     })
     
-    // .when('/parks/articles', {
-    //   templateUrl: '/views/templates/articles.html',
-    //   controller: 'ParkController as vm',
-    //   resolve: {
-    //     getuser : function(UserService){
-    //       return UserService.getuser();
-    //     }
-    //   }
-    // })
+// routes to articles page
+    .when('/parks/articles', {
+      templateUrl: '/views/templates/articles.html',
+      controller: 'HomeController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+    // routes to events page
+    .when('/parks/events', {
+      templateUrl: '/views/templates/events.html',
+      controller: 'HomeController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
 
-    // .when('/parks/events', {
-    //   templateUrl: '/views/templates/events.html',
-    //   controller: 'ParkController as vm',
-    //   resolve: {
-    //     getuser : function(UserService){
-    //       return UserService.getuser();
-    //     }
-    //   }
-    // })
-    // .when('/parks/gallery', {
-    //   templateUrl: '/views/templates/gallery.html',
-    //   controller: 'ParkController as vm',
-    //   resolve: {
-    //     getuser : function(UserService){
-    //       return UserService.getuser();
-    //     }
-    //   }
-    // })
+    // routes to gallery page
+    .when('/parks/gallery', {
+      templateUrl: '/views/templates/gallery.html',
+      controller: 'HomeController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+
     // .when('/parks/reviews', {
     //   templateUrl: '/views/templates/reviews.html',
     //   controller: 'ParkController as vm',

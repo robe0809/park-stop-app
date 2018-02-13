@@ -1,0 +1,8 @@
+<div ng-include="'views/partials/parkNav.html'"></div>
+<div>
+    <p ng-repeat="events in vm.infoList.list.data"> 
+        {{events.location}}
+        {{events.dates}}
+        {{events.abstract}}
+    </p>
+</div>

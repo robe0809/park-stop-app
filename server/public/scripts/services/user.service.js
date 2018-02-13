@@ -2,9 +2,12 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
   console.log('UserService Loaded');
 
   var self = this;
+  var fsClient = filestack.init('Ap5iwWk6nRwOwoqPQ3vZ9z');
+  
   self.userObject = {};
   self.parkList = {list: []};
-  
+  self.infoList = {list: []};
+  self.userImage = {list: []};
   // ********* Getting Park Description *********
   self.parkDescription = function (parkSelected) { 
     let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
@@ -17,6 +20,33 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
     })
     .catch(function (error) {
         console.log('error on getting parks', error);
+    });
+  }
+  // ********* Getting Park Information (articles/events) *********
+  self.parkInfo = function (currentNavItem, parkSelected) { 
+    let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
+    // getting each park by parkCode
+    $http.get(`https://developer.nps.gov/api/v1/${currentNavItem}?parkCode=${parkSelected}&` + apiKey)
+    .then(function (response) {
+        self.infoList.list = response.data;
+        console.log('successful get parks', self.infoList.list);
+        $location.path(`/parks/${currentNavItem}`);
+    })
+    .catch(function (error) {
+        console.log('error on getting parks', error);
+    });
+  }
+
+  // ********* Photo Uploads *********
+  self.openPicker = function () {
+    fsClient.pick({
+      fromSources:["local_file_system","url","imagesearch","facebook","instagram","dropbox"],
+      accept:["image/*"]
+    }).then(function(response) {
+        // declare this function to handle response
+        handleFilestack(response);
+        self.userImage.list = response.filesUploaded;
+        console.log('response from filestack', self.userImage.list);
     });
   }
 

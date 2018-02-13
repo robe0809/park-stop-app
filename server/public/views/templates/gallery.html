@@ -1,0 +1,8 @@
+<div ng-include="'views/partials/parkNav.html'"></div>
+
+<div ng-repeat="images in vm.userImage.list">
+    <img ng-src="{{images.url}}">
+</div>
+
+<md-button class="md-raised" ng-click="vm.openPicker()">click me to upload</md-button>
+

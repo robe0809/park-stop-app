@@ -47,6 +47,10 @@ body, html {
 }
 
 /* Park Articles View */
+.md-card {
+  height: 200px;
+}
+
 /* Park Events View */
 /* Park Gallery View */
 /* Park Reviews View */

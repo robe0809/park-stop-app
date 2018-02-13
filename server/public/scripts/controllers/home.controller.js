@@ -6,7 +6,10 @@ myApp.controller('HomeController', ['UserService', function(UserService) {
     self.userService = UserService;
     self.parkList = UserService.parkList;
     self.userObject = UserService.userObject;
-    
+    self.infoList = UserService.infoList;
+    self.userImage = UserService.userImage;
+
+
     self.nationalPark = [
         {
             name: "Acadia National Park",
@@ -301,4 +304,12 @@ myApp.controller('HomeController', ['UserService', function(UserService) {
         UserService.parkDescription(parkSelected);
     }
 
+    self.parkInfo = function(currentNavItem, parkSelected) {
+        UserService.parkInfo(currentNavItem, parkSelected);
+    }
+
+    self.openPicker = function () {
+        UserService.openPicker();
+    }
+    
 }]);
