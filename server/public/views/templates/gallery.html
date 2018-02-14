@@ -4,5 +4,4 @@
     <img ng-src="{{images.url}}">
 </div>
 
-<md-button class="md-raised" ng-click="vm.openPicker()">click me to upload</md-button>
-
+<md-button class="md-raised" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>

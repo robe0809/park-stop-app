@@ -79,15 +79,16 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
       }
     })
 
-    // .when('/parks/reviews', {
-    //   templateUrl: '/views/templates/reviews.html',
-    //   controller: 'ParkController as vm',
-    //   resolve: {
-    //     getuser : function(UserService){
-    //       return UserService.getuser();
-    //     }
-    //   }
-    // })
+    .when('/parks/reviews', {
+      templateUrl: '/views/templates/reviews.html',
+      controller: 'HomeController as vm',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
+
     .otherwise({
       template: '<h1>404</h1>'
     });

@@ -5,6 +5,49 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// *************** Posting Photos ***************
+router.post('/parks/gallery/:id', (req, res) => {
+
+  console.log('ids', req.params);
+  console.log('body', req.body);
+  
+  if(req.isAuthenticated()) {
+    let newImage = new Person.Image(req.body);
+    newImage.save((error, imageDoc) => {
+      if(error) {
+        res.sendStatus(500);
+      } 
+      else {
+        console.log('saved new itemDoc', imageDoc);
+        
+        Person.Person.findByIdAndUpdate(
+          {
+              "_id": req.params.id
+          },
+          // push this new object into the array on this image Document
+          { $push: { userImage: newImage } },
+          (pusherror, doc) => {
+              if (pusherror) {
+                  console.log('error on push to imageArray: ', pusherror);
+                  res.sendStatus(500);
+              } else {
+                  console.log('updated person Document: ', doc);
+                  console.log('-----------------------------');
+
+                  res.sendStatus(201);
+              }
+          }
+        );
+      };
+    })
+  }
+});
+
+
+
+
+
+// *************** Authentication ***************
 // Handles Ajax request for user information if user is authenticated
 router.get('/', (req, res) => {
   // check if logged in

@@ -2,12 +2,11 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
   console.log('UserService Loaded');
 
   var self = this;
-  var fsClient = filestack.init('Ap5iwWk6nRwOwoqPQ3vZ9z');
   
   self.userObject = {};
   self.parkList = {list: []};
   self.infoList = {list: []};
-  self.userImage = {list: []};
+
   // ********* Getting Park Description *********
   self.parkDescription = function (parkSelected) { 
     let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
@@ -37,27 +36,14 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
     });
   }
 
-  // ********* Photo Uploads *********
-  self.openPicker = function () {
-    fsClient.pick({
-      fromSources:["local_file_system","url","imagesearch","facebook","instagram","dropbox"],
-      accept:["image/*"]
-    }).then(function(response) {
-        // declare this function to handle response
-        handleFilestack(response);
-        self.userImage.list = response.filesUploaded;
-        console.log('response from filestack', self.userImage.list);
-    });
-  }
-
   // ********* Getting User Information *********
   self.getuser = function(){
     console.log('UserService -- getuser');
     $http.get('/api/user').then(function(response) {
         if(response.data.username) {
             // user has a curret session on the server
-            self.userObject.userName = response.data.username;
-            console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
+            self.userObject = response.data;
+            console.log('UserService -- getuser -- User Data: ', response.data);
         } else {
             console.log('UserService -- getuser -- failure');
             // user has no session, bounce them back to the login page

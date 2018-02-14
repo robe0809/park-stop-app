@@ -1,13 +1,16 @@
-myApp.controller('HomeController', ['UserService', function(UserService) {
+myApp.controller('HomeController', ['UserService', 'FilestackService', function(UserService, FilestackService) {
   console.log('HomeController created');
   
     var self = this;
-
+    let parkCode;
+    // From User Service 
     self.userService = UserService;
     self.parkList = UserService.parkList;
     self.userObject = UserService.userObject;
     self.infoList = UserService.infoList;
-    self.userImage = UserService.userImage;
+    
+    // From Filestack Service
+    self.userImage = FilestackService.userImage;
 
 
     self.nationalPark = [
@@ -299,17 +302,26 @@ myApp.controller('HomeController', ['UserService', function(UserService) {
         }    
     ]
 
+    // getting park descriptions
     self.parkDescription = function(parkSelected) {
         console.log(parkSelected);
         UserService.parkDescription(parkSelected);
     }
 
+    // getting park articles and events
     self.parkInfo = function(currentNavItem, parkSelected) {
         UserService.parkInfo(currentNavItem, parkSelected);
     }
 
-    self.openPicker = function () {
-        UserService.openPicker();
+    //Filestack function for uploading photos
+    self.openPicker = function (userId, parkId, image) {
+        // loops through parkList to get the parkCode
+        // this allows the parkCode to be sent and stored with the image
+        // as well as the user ID.
+        for(let i = 0; i < parkId.length; i++) {
+           parkCode = parkId[i].parkCode;
+        }
+        FilestackService.openPicker(userId, parkCode, image);
     }
-    
+
 }]);
