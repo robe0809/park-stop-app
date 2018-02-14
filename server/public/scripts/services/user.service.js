@@ -35,7 +35,7 @@ myApp.service('UserService', ['$http', '$location', function($http, $location){
         console.log('error on getting parks', error);
     });
   }
-
+  
   // ********* Getting User Information *********
   self.getuser = function(){
     console.log('UserService -- getuser');

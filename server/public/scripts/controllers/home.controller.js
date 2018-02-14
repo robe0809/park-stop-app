@@ -1,4 +1,4 @@
-myApp.controller('HomeController', ['UserService', 'FilestackService', function(UserService, FilestackService) {
+myApp.controller('HomeController', ['UserService', 'CrudService', function(UserService, CrudService) {
   console.log('HomeController created');
   
     var self = this;
@@ -10,7 +10,7 @@ myApp.controller('HomeController', ['UserService', 'FilestackService', function(
     self.infoList = UserService.infoList;
     
     // From Filestack Service
-    self.userImage = FilestackService.userImage;
+    self.image = CrudService.image;
 
 
     self.nationalPark = [
@@ -308,12 +308,17 @@ myApp.controller('HomeController', ['UserService', 'FilestackService', function(
         UserService.parkDescription(parkSelected);
     }
 
-    // getting park articles and events
-    self.parkInfo = function(currentNavItem, parkSelected) {
-        UserService.parkInfo(currentNavItem, parkSelected);
+    // Getting park articles and events
+    self.parkInfo = function(currentNavItem, parkSelected) { 
+        if(currentNavItem == 'gallery') {
+            CrudService.getAllPhotos(parkSelected);
+        } else {
+            UserService.parkInfo(currentNavItem, parkSelected);
+        }
+
     }
 
-    //Filestack function for uploading photos
+    // Filestack function for uploading photos
     self.openPicker = function (userId, parkId, image) {
         // loops through parkList to get the parkCode
         // this allows the parkCode to be sent and stored with the image
@@ -321,7 +326,7 @@ myApp.controller('HomeController', ['UserService', 'FilestackService', function(
         for(let i = 0; i < parkId.length; i++) {
            parkCode = parkId[i].parkCode;
         }
-        FilestackService.openPicker(userId, parkCode, image);
+        CrudService.openPicker(userId, parkCode, image);
     }
-
+    // add Reviews
 }]);

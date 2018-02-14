@@ -1,7 +1,10 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
 
-<div ng-repeat="images in vm.userImage.list">
-    <img ng-src="{{images.url}}">
-</div>
+<ul>
+    <li ng-repeat="images in vm.image.list">
+        <img ng-src="{{images.imgFile}}">
+        <button>Delete Image</button>
+    </li>  
+</ul>
 
 <md-button class="md-raised" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>

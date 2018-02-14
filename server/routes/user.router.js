@@ -5,13 +5,32 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// *************** Posting Photos ***************
-router.post('/parks/gallery/:id', (req, res) => {
-
-  console.log('ids', req.params);
-  console.log('body', req.body);
+// *************** Getting All Photos ***************
+router.get('/parks/gallery/:id', (req, res) => {
   
+  let parkId = req.params.id
+  console.log('yo', req.params.id);
+  
+  Person.Image.find({parkId}, (error, image) => {
+    // console.log(image)
+    if(error) {
+      console.log('error on find allImages', error);
+      res.sendStatus(500);
+    }
+    else {
+      console.log('found images documents', image);
+      res.send(image);
+    }
+  });
+});
+
+// *************** Posting Photos ***************
+router.post('/parks/gallery/', (req, res) => {
+
+  console.log('body', req.body);
+  let user = req.user._id;
   if(req.isAuthenticated()) {
+    console.log('user', req.user._id);
     let newImage = new Person.Image(req.body);
     newImage.save((error, imageDoc) => {
       if(error) {
@@ -22,7 +41,7 @@ router.post('/parks/gallery/:id', (req, res) => {
         
         Person.Person.findByIdAndUpdate(
           {
-              "_id": req.params.id
+              "_id": user,
           },
           // push this new object into the array on this image Document
           { $push: { userImage: newImage } },
