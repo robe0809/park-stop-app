@@ -9,8 +9,11 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
     self.userObject = UserService.userObject;
     self.infoList = UserService.infoList;
     
+    console.log('userObject', self.userObject);
+    
     // From Filestack Service
     self.image = CrudService.image;
+    self.userImage = CrudService.userImage;
     
     self.nationalPark = [
         {
@@ -301,10 +304,8 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
         }    
     ]
 
-
     // getting park descriptions
     self.parkDescription = function(parkSelected) {
-        self.getNationalParkPhoto(parkSelected);
         UserService.parkDescription(parkSelected);
     }
 
@@ -316,6 +317,14 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
             UserService.parkInfo(currentNavItem, parkSelected);
         }
 
+    }
+
+    self.deleteUserPhotos = function (imageId, parkId) {  
+        for(let i = 0; i < parkId.length; i++) {
+            parkCode = parkId[i].parkCode;
+         }
+        CrudService.deleteUserPhotos(imageId);
+        CrudService.getAllPhotos(parkCode);
     }
 
     // Filestack function for uploading photos

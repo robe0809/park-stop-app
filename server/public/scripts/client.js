@@ -81,7 +81,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 
     .when('/parks/reviews', {
       templateUrl: '/views/templates/reviews.html',
-      controller: 'HomeController as vm',
+      controller: 'ReviewController as vm',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

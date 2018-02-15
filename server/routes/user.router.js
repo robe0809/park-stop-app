@@ -4,11 +4,8 @@ const Person = require('../models/Person');
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
+let userId; 
 
-// *************** Getting User Photos *************** 
-router.get('/parks/gallery/:id', (req, res) => {
-  let 
-})
 // *************** Getting All Photos ***************
 router.get('/parks/gallery/:id', (req, res) => {
   
@@ -58,11 +55,27 @@ router.post('/parks/gallery/', (req, res) => {
               }
           });
       };
-    })
-  }
+    });
+  };
 });
 
-
+// *************** Posting Photos ***************
+router.delete('/parks/gallery/:id', (req, res) => {
+  let imageId = req.params.id;
+  console.log('ha', imageId);
+  
+  Person.Image.findByIdAndRemove(
+    {"_id": imageId},
+    (error, removedImage) => {
+      if(error) {
+        console.log('error on delete image', error);
+        res.sendStatus(500);
+      } else {
+        console.log('Image removed', removedImage);
+        res.sendStatus(200);
+      }
+    });
+});
 
 
 

@@ -52,11 +52,22 @@
             .then(function (response) {
                 self.image.list = response.data;
                 console.log('All Images: ', self.image.list);
-            },
+            })
             // error response of unauthorized (403)
-            function(response) {
-            console.log('error:', response);
-        });
+            .catch(function (error) {
+                console.log('error on post', error);
+            })
+    }
+
+    self.deleteUserPhotos = function (imageId) {
+        $http.delete(`/api/user/parks/gallery/${imageId}`)
+            .then(function (response) {
+                self.image.list = response.data;
+                console.log('user Images', self.image.list);
+            })
+            .catch(function (error) {
+                console.log('error on getuser photos', error);
+            })
     }
     
 
