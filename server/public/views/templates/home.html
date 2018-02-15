@@ -1,18 +1,14 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
-<div class="homeBackground">
+<div 
+    class="homeBackground"
+    layout="row"
+    layout-align="center center">
     <form 
         class="nationalParkForm"
         name="myForm"
-        layout="column"
-        layout-align-xs="end center">
-            <md-input-container>
-                <label>State</label>
-                <md-select name="favoriteColor" ng-model="favoriteColor" required>
-                    <md-option value="red">Red</md-option>
-                    <md-option value="blue">Blue</md-option>
-                    <md-option value="green">Green</md-option>
-                </md-select>
-            </md-input-container>
+        layout="row"
+        layout-align="center center">
+        <h1 class="homeTitle">Choose Your Park</h1>
             <md-input-container>
                 <label>National Park</label>
                 <md-select 

@@ -14,8 +14,9 @@ body, html {
 }
 
 .nationalParkForm {
-  width: 200px;
-  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  /* margin: 0 auto; */
   padding: 30px;
   opacity: .9;
   border-radius: 5px;
@@ -47,12 +48,31 @@ body, html {
 }
 
 /* Park Articles View */
+.parkArticlesView {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.articleCards {
+}
 .md-card {
   height: 200px;
+  width: 5%;
 }
 
 /* Park Events View */
 /* Park Gallery View */
+md-whiteframe {
+  margin: 10px;
+}
+.whiteframe {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
 /* Park Reviews View */
 
 

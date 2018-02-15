@@ -1,10 +1,32 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
 
-<div class="parkArticlesView">
+<div >
 
-<md-content class="md-padding" layout-xs="column" layout="row">
+    <div class="parkArticlesView" flex-xs flex-gt-xs="50" layout="column">
+        <md-card 
+            class="articlCards"
+            md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" 
+            md-theme-watch
+            ng-repeat="articles in vm.infoList.list.data">
+            <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Card with image</span>
+                <span class="md-subhead">{{articles.listingDescription}}</span>
+            </md-card-title-text>
+            <md-card-title-media>
+                <figure class="md-media-lg card-media">
+                    <img ng-src="{{articles.listingImage.url}}" alt="">
+                </figure>
+            </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="center end">
+            <a href="{{articles.url}}"><md-button class="md-raised md-primary" >Read Article</md-button></a> 
+            </md-card-actions>
+        </md-card>
+    </div>
 
-    <div flex-xs flex-gt-xs="30" layout="row">
+</div>
+    <!-- <div layout="column" layout-wrap flex=33>
 
         <md-card ng-repeat="articles in vm.infoList.list.data">
             <img ng-src="{{articles.listingImage.url}}" class="md-card-image" alt="Washed Out">
@@ -24,8 +46,5 @@
             </md-card-actions>
         </md-card>
 
-    </div>
+    </div> -->
 
-</md-content>
-
-</div>

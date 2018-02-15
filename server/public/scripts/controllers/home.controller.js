@@ -11,8 +11,7 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
     
     // From Filestack Service
     self.image = CrudService.image;
-
-
+    
     self.nationalPark = [
         {
             name: "Acadia National Park",
@@ -302,9 +301,10 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
         }    
     ]
 
+
     // getting park descriptions
     self.parkDescription = function(parkSelected) {
-        console.log(parkSelected);
+        self.getNationalParkPhoto(parkSelected);
         UserService.parkDescription(parkSelected);
     }
 

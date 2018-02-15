@@ -5,6 +5,10 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
+// *************** Getting User Photos *************** 
+router.get('/parks/gallery/:id', (req, res) => {
+  let 
+})
 // *************** Getting All Photos ***************
 router.get('/parks/gallery/:id', (req, res) => {
   
@@ -37,12 +41,9 @@ router.post('/parks/gallery/', (req, res) => {
         res.sendStatus(500);
       } 
       else {
-        console.log('saved new itemDoc', imageDoc);
-        
+        console.log('saved new imageDoc', imageDoc);
         Person.Person.findByIdAndUpdate(
-          {
-              "_id": user,
-          },
+          {"_id": user,},
           // push this new object into the array on this image Document
           { $push: { userImage: newImage } },
           (pusherror, doc) => {
@@ -55,8 +56,7 @@ router.post('/parks/gallery/', (req, res) => {
 
                   res.sendStatus(201);
               }
-          }
-        );
+          });
       };
     })
   }
