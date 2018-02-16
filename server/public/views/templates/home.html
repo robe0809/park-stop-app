@@ -1,21 +1,22 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
-<div 
-    class="homeBackground"
-    layout="row"
-    layout-align="center center">
-    <form 
-        class="nationalParkForm"
-        name="myForm"
+<div class="homeBackground">
+    <div 
         layout="row"
         layout-align="center center">
-        <h1 class="homeTitle">Choose Your Park</h1>
-            <md-input-container>
-                <label>National Park</label>
-                <md-select 
-                ng-model="vm.parkSelected"
-                ng-change="vm.parkDescription(vm.parkSelected)">
-                    <md-option ng-value="park" ng-repeat="park in vm.nationalPark">{{park.name}}</md-option>
-                </md-select>
-            </md-input-container>
-    </form>
+        <form 
+            class="nationalParkForm"
+            name="myForm"
+            layout="row"
+            layout-align="center center">
+            <h1 class="homeTitle">Choose Your Park</h1>
+                <md-input-container>
+                    <label>National Park</label>
+                    <md-select 
+                    ng-model="vm.parkSelected"
+                    ng-change="vm.parkDescription(vm.parkSelected)">
+                        <md-option ng-value="park" ng-repeat="park in vm.nationalPark">{{park.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+        </form>
+    </div>
 </div>

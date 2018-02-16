@@ -1,5 +1,35 @@
+<div ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
-
-
 <md-button id="myBtn" class="md-raised" ng-click="vm.showAdvanced()">Add Review</md-button>
+<div 
+    flex-xs 
+    flex-gt-xs="50" 
+    layout="column"
+    ng-repeat="parks in vm.parkList.list.data">
+    <md-card 
+        md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" 
+        md-theme-watch
+        ng-repeat="userReviews in vm.reviewList.list">
+        <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">{{vm.userObject.username}}</span>
+            <p class="md-subhead">{{userReviews.comment}}</p>
+        </md-card-title-text>
+        <md-card-title-media>
+            <div class="md-media-sm card-media"></div>
+        </md-card-title-media>
+        </md-card-title>
+        <md-card-actions 
+            layout="row" 
+            layout-align="end center">
+            <md-button 
+            class="md-raised md-warn"
+            ng-click="vm.deleteReview(userReviews._id, parks.parkCode)">
+                Delete Review
+            </md-button>
+        </md-card-actions> 
+    </md-card>
+</div>
+
+
 

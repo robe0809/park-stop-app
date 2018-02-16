@@ -1,27 +1,32 @@
 <md-dialog aria-label="Mango (Fruit)">
-        <form ng-cloak>
-          <md-toolbar>
-            <div class="md-toolbar-tools">
-              <h2>Share Your Experience</h2>
-              <span flex></span>
-              <md-button class="md-primary" ng-click="cancel()">
-              </md-button>
-            </div>
-          </md-toolbar>
-      
-          <md-dialog-content>
-            <div class="md-dialog-content">
-              <h1></h1>
-            </div>
-          </md-dialog-content>
-          <md-dialog-actions layout="row">
-            <span flex></span>
-            <md-button ng-click="vm.answer('not useful')">
-             Not Useful
-            </md-button>
-            <md-button ng-click="vm.answer('useful')" class="md-primary">
-              Useful
-            </md-button>
-          </md-dialog-actions>
-        </form>
-      </md-dialog>
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Hello, {{vm.userObject.username}}! Share your experience!</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon md-svg-src="../../assets/svg/Cancel.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content ng-repeat="park in vm.parkList.list.data">
+      <div class="md-dialog-content"  layout="column">
+        <h3>How was your trip to {{park.name}} National Park? </h3>
+        <h3>Rate {{park.name}}</h3>
+        <!-- first rate is the star count -->
+        <jk-rating-stars rating="vm.firstRate" ></jk-rating-stars>
+        <div style="width: 100px"></div>
+        <md-input-container class="form-control">
+          <textarea rows="5" ng-model="vm.review" placeholder="Your Review" md-no-asterisk required></textarea>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" ng-repeat="park in vm.parkList.list.data">
+      <span flex></span>
+      <md-button ng-click="vm.submitReview(vm.userObject._id, vm.firstRate, vm.review, park.parkCode)" class="md-primary">
+          Submit Review
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

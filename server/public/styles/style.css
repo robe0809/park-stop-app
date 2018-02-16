@@ -1,5 +1,6 @@
 /* *********** Document Style  *********** */
 body, html {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -7,13 +8,16 @@ body, html {
 }
 
 /* *********** Home Background (nav.html)  *********** */
-.homeBackground {
-  height: 700px;
-  background-image: url('http://cdn.history.com/sites/2/2015/09/iStock_000038100826_Large.jpg');
+.homeBackground, .loginScreen {
+  height: 1000px;
+  background-image: url('http://cdn.history.com/sites/2/2015/09/iStock_000038100826_Large.jpg'); 
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  object-fit: cover;
 }
-
+#navHeader {
+  border-bottom: 2px solid #333333;
+}
 .nationalParkForm {
   width: 400px;
   height: 400px;
@@ -75,7 +79,9 @@ body, html {
 }
 
 /* *********** Park Reviews View *********** */
-
+.form-control {
+  border: 1px solid lightgrey;
+}
 
 
 /* *********** Header partial *********** */
@@ -92,6 +98,9 @@ body, html {
 }
 
 /* *********** Login/Register Styles *********** */
+.loginScreen {
+
+}
 .lead {
   text-align: center;
 }

@@ -4,7 +4,9 @@
         <title>Park Stop</title>
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="styles/angular-material.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+        <link rel="stylesheet" href="styles/jk-rating-stars.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css"> -->
 
         <!-- ANGULAR -->
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
@@ -16,22 +18,21 @@
         <script type="text/javascript" src="vendors/angular-aria.min.js"></script>
         <script type="text/javascript" src="vendors/angular-material.min.js"></script>
         <script type="text/javascript" src="vendors/angular-messages.min.js"></script>
+        <script type="text/javascript" src="vendors/jk-rating-stars.min.js"></script>
         <script type="text/javascript" src="vendors/filestack.js"></script>
 
         <!-- CLIENT -->
         <script type="text/javascript" src="scripts/client.js"></script>
         <script type="text/javascript" src="scripts/controllers/favorite.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/home.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/park.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/review.controller.js"></script>
         <script type="text/javascript" src="scripts/services/user.service.js"></script>
-        <script type="text/javascript" src="scripts/services/crud.service.js"></script>
+        <script type="text/javascript" src="scripts/services/park.service.js"></script>
         
     </head>
 
     <body ng-app="myApp">
-        
-      <header ng-include="'/views/partials/header.html'"></header>
 
       <main ng-view></main>
 

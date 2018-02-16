@@ -1,5 +1,5 @@
-myApp.controller('HomeController', ['UserService', 'CrudService', function(UserService, CrudService) {
-  console.log('HomeController created');
+myApp.controller('ParkController', ['UserService', 'ParkService', function(UserService, ParkService) {
+  console.log('ParkController created');
   
     var self = this;
     let parkCode;
@@ -12,8 +12,8 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
     console.log('userObject', self.userObject);
     
     // From Filestack Service
-    self.image = CrudService.image;
-    self.userImage = CrudService.userImage;
+    self.image = ParkService.image;
+    self.userImage = ParkService.userImage;
     
     self.nationalPark = [
         {
@@ -312,19 +312,21 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
     // Getting park articles and events
     self.parkInfo = function(currentNavItem, parkSelected) { 
         if(currentNavItem == 'gallery') {
-            CrudService.getAllPhotos(parkSelected);
-        } else {
+            ParkService.getAllPhotos(parkSelected);
+        } else if (currentNavItem == 'reviews') {
+            ParkService.getReviews(parkSelected);
+        }
+        else {
             UserService.parkInfo(currentNavItem, parkSelected);
         }
-
     }
 
     self.deleteUserPhotos = function (imageId, parkId) {  
         for(let i = 0; i < parkId.length; i++) {
             parkCode = parkId[i].parkCode;
          }
-        CrudService.deleteUserPhotos(imageId);
-        CrudService.getAllPhotos(parkCode);
+        ParkService.deleteUserPhotos(imageId);
+        ParkService.getAllPhotos(parkCode);
     }
 
     // Filestack function for uploading photos
@@ -335,7 +337,7 @@ myApp.controller('HomeController', ['UserService', 'CrudService', function(UserS
         for(let i = 0; i < parkId.length; i++) {
            parkCode = parkId[i].parkCode;
         }
-        CrudService.openPicker(userId, parkCode, image);
+        ParkService.openPicker(userId, parkCode, image);
     }
     // add Reviews
 }]);
