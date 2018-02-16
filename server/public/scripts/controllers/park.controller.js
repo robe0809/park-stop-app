@@ -1,4 +1,4 @@
-myApp.controller('ParkController', ['UserService', 'ParkService', function(UserService, ParkService) {
+myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', function(UserService, ParkService, FavoriteService) {
   console.log('ParkController created');
   
     var self = this;
@@ -304,6 +304,12 @@ myApp.controller('ParkController', ['UserService', 'ParkService', function(UserS
         }    
     ]
 
+    // Favorites parks And adds them to the favorites page. 
+    self.favoritePark = function (userId, parkId) {
+        console.log('clicked');
+        FavoriteService.favoritePark(userId, parkId);
+    }
+
     // getting park descriptions
     self.parkDescription = function(parkSelected) {
         UserService.parkDescription(parkSelected);
@@ -321,6 +327,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', function(UserS
         }
     }
 
+    // Deletes Users photos 
     self.deleteUserPhotos = function (imageId, parkId) {  
         for(let i = 0; i < parkId.length; i++) {
             parkCode = parkId[i].parkCode;

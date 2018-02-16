@@ -62,6 +62,24 @@ router.post('/parks/gallery/', (req, res) => {
   };
 });
 
+// *************** Deleting Photos ***************
+router.delete('/parks/gallery/:id', (req, res) => {
+  let imageId = req.params.id;
+  console.log('ha', imageId);
+  
+  Person.Image.findByIdAndRemove(
+    {"_id": imageId},
+    (error, removedImage) => {
+      if(error) {
+        console.log('error on delete image', error);
+        res.sendStatus(500);
+      } else {
+        console.log('Image removed', removedImage);
+        res.sendStatus(200);
+      }
+    });
+});
+
 // *************** Getting Reviews ***************
 router.get('/parks/reviews/:id', (req, res) => {
   
@@ -117,25 +135,6 @@ router.post('/parks/reviews', (req, res) => {
   };
 })
 
-
-// *************** Deleting Photos ***************
-router.delete('/parks/gallery/:id', (req, res) => {
-  let imageId = req.params.id;
-  console.log('ha', imageId);
-  
-  Person.Image.findByIdAndRemove(
-    {"_id": imageId},
-    (error, removedImage) => {
-      if(error) {
-        console.log('error on delete image', error);
-        res.sendStatus(500);
-      } else {
-        console.log('Image removed', removedImage);
-        res.sendStatus(200);
-      }
-    });
-});
-
 // *************** Deleting Reviews ***************
 router.delete('/parks/reviews/:id', (req, res) => {
   let reviewId = req.params.id;
@@ -153,6 +152,61 @@ router.delete('/parks/reviews/:id', (req, res) => {
       }
     });
 });
+
+// *************** Getting Favorites ***************
+router.get('/favorites/:id', (req, res) => {
+  
+  let user_id = req.params.id
+  console.log('yo', user_id);
+  
+  Person.Favorite.find({user_id}, (error, favorite) => {
+    if(error) {
+      console.log('error on find favorites', error);
+      res.sendStatus(500);
+    }
+    else {
+      console.log('found favorites documents', favorite);
+      res.send(favorite);
+    }
+  });
+});
+
+// *************** Posting Favorites ***************
+router.post('/favorites', (req, res) => {
+  let user = req.user._id
+  console.log('favorites body', req.body);
+
+  if(req.isAuthenticated()) {
+    let newFavorite = new Person.Favorite(req.body);
+    newFavorite.save((error, FavoriteDoc) => {
+      if(error) {
+        res.sendStatus(500);
+      } 
+      else {
+        console.log('saved new ReviewDoc', FavoriteDoc);
+        Person.Person.findByIdAndUpdate(
+          {"_id": user,},
+          // push this new object into the array on this favorite Document
+          { $push: { userFavorite: newFavorite } },
+          (pusherror, FavoriteDoc) => {
+              if (pusherror) {
+                  console.log('error on push to FavoriteArray: ', pusherror);
+                  res.sendStatus(500);
+              } else {
+                  console.log('updated person Document: ', FavoriteDoc);
+                  console.log('-----------------------------');
+                  res.sendStatus(201);
+              };
+          }
+        );
+      };
+    });
+  } 
+  else {
+    res.sendStatus(403);
+  };
+})
+
 
 // *************** Authentication ***************
 // Handles Ajax request for user information if user is authenticated

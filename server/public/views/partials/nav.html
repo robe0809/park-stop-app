@@ -16,7 +16,7 @@
     flex=100>
     <div>
       <md-nav-item id="home" md-nav-href="#!home" name="Home">Home</md-nav-item>
-      <md-nav-item id="favorites" md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
+      <md-nav-item id="favorites" md-nav-href="#!favorites" ng-click="vm.favoriteInfo(vm.currentNavItem, vm.userObject._id )" name="favorites" value="favorites">Favorites</md-nav-item>
     </div>
   </md-nav-bar>
 </md-content>
