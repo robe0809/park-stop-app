@@ -65,8 +65,8 @@ myApp.controller('ReviewController', ['UserService', 'ParkService','$mdDialog', 
             $mdDialog.cancel();
         };
 
-        self.submitReview = function (user_id, ratings, comment, parkId) {
-            ParkService.submitReview(user_id, ratings, comment, parkId);
+        self.submitReview = function (username, user_id, ratings, comment, parkId) {
+            ParkService.submitReview(username, user_id, ratings, comment, parkId);
             $mdDialog.hide();
         }
     };

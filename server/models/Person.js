@@ -10,6 +10,7 @@ const ImageSchema = new Schema({
     imgFile: { type: String, required: true }    
 })
 const ReviewSchema = new Schema({
+    username: {type: String, required: true},
     user_id: {type: String, required: true},
     parkId: {type: String, required: true},
     comment: { type: String, required: true },

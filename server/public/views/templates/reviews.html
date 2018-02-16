@@ -2,33 +2,34 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
 <md-button id="myBtn" class="md-raised" ng-click="vm.showAdvanced()">Add Review</md-button>
 <div 
-    flex-xs 
-    flex-gt-xs="50" 
     layout="column"
+    layout-align="start"
     ng-repeat="parks in vm.parkList.list.data">
-    <md-card 
-        md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" 
-        md-theme-watch
-        ng-repeat="userReviews in vm.reviewList.list">
-        <md-card-title>
-        <md-card-title-text>
-            <span class="md-headline">{{vm.userObject.username}}</span>
-            <p class="md-subhead">{{userReviews.comment}}</p>
-        </md-card-title-text>
-        <md-card-title-media>
-            <div class="md-media-sm card-media"></div>
-        </md-card-title-media>
-        </md-card-title>
-        <md-card-actions 
-            layout="row" 
-            layout-align="end center">
-            <md-button 
-            class="md-raised md-warn"
-            ng-click="vm.deleteReview(userReviews._id, parks.parkCode)">
-                Delete Review
-            </md-button>
-        </md-card-actions> 
-    </md-card>
+    <md-toolbar class="md-hue-9" >
+        <div class="md-toolbar-tools">
+            <span>{{parks.name}} Reviews</span>
+        </div>
+    </md-toolbar>
+      
+    <md-content>
+    <md-list>
+        <md-list-item ng-repeat="userReviews in vm.reviewList.list" class="md-3-line">
+        <!-- <img ng-src="" class="md-avatar" alt="" /> -->
+        <div class="md-list-item-text" layout="column">
+            <h3>{{userReviews.username}}</h3>
+            <p>{{userReviews.comment}}</p>
+            <jk-rating-stars rating="userReviews.ratings" readonly></jk-rating-stars>
+            <div style="width: 100px"></div>
+        </div>
+        <md-button 
+        class="md-raised md-warn"
+        ng-if="vm.userObject._id == userReviews.user_id"
+        ng-click="vm.deleteReview(userReviews._id, parks.parkCode)">
+            Delete Review
+        </md-button>
+        </md-list-item>
+    </md-list>
+    </md-content>
 </div>
 
 

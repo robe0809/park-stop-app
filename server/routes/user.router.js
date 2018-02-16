@@ -51,10 +51,14 @@ router.post('/parks/gallery/', (req, res) => {
                   console.log('-----------------------------');
 
                   res.sendStatus(201);
-              }
-          });
+              };
+          }
+        );
       };
     });
+  } 
+  else {
+    res.sendStatus(403);
   };
 });
 
@@ -102,10 +106,14 @@ router.post('/parks/reviews', (req, res) => {
                   console.log('updated person Document: ', Reviewdoc);
                   console.log('-----------------------------');
                   res.sendStatus(201);
-              }
-          });
+              };
+          }
+        );
       };
     });
+  } 
+  else {
+    res.sendStatus(403);
   };
 })
 

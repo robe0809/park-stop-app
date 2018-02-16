@@ -1,24 +1,17 @@
-<md-content class="md-padding">
+<md-content class="md-padding" ng-repeat="parks in vm.parkList.list.data">
+  <div layout="row" layout-align="start start">
+    <md-button class="md-raised" ng-click="vm.favoritePark(vm.userObject._id, parks.parkCode)">
+        <md-icon md-svg-src="../../assets/svg/favorite.svg"></md-icon>
+      Favorite Park
+    </md-button>
+  </div>
   <div 
-    class="parkNavHeader" 
-    layout="column" 
-    layout-align="space-between center"
-    ng-repeat="parks in vm.parkList.list.data">
-    
-    <md-nav-bar
-      md-selected-nav-item="currentNavItem"
-      nav-bar-aria-label="navigation links"
-      flex=20>
-      <!-- <div>
-        <md-nav-item md-nav-href="#!home" name="Home">Home</md-nav-item>
-        <md-nav-item md-nav-href="#!favorites" name="favorites">Favorites</md-nav-item>
-      </div> -->
-    </md-nav-bar>
-    
-    <h1>
+    class="parkNavHeader"
+    layout="row" 
+    layout-align="center center"> 
+    <h1 class="parkNavName">
       {{parks.name}}
     </h1>
-
   </div>
   <div 
     layout="column" 

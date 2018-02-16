@@ -71,8 +71,9 @@
             })
     }
     // ********* Adding Reviews *********
-    self.submitReview = function (user_id, ratings, comment, parkId) {
+    self.submitReview = function (username, user_id, ratings, comment, parkId) {
         let newReview = {
+            username,
             user_id,
             ratings,
             comment,
