@@ -24,7 +24,7 @@
     </md-dialog-content>
     <md-dialog-actions layout="row" ng-repeat="park in vm.parkList.list.data">
       <span flex></span>
-      <md-button ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, park.parkCode)" class="md-primary">
+      <md-button class="md-raised" ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, park.parkCode)" >
           Submit Review
       </md-button>
     </md-dialog-actions>

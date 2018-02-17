@@ -1,7 +1,14 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'jkAngularRatingStars']);
 
 /// Routes ///
-myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider', function($routeProvider, $locationProvider, $mdThemingProvider) {
+  
+  // Theme for web app
+  $mdThemingProvider.theme('default')
+    .primaryPalette('brown')
+    // .accentPalette()
+    .dark();
+
 
   console.log('myApp -- config')
   $routeProvider

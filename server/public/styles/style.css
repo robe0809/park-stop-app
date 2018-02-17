@@ -1,6 +1,5 @@
 /* *********** Document Style  *********** */
 body, html {
-  height: 100%;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -9,24 +8,38 @@ body, html {
 
 /* *********** Home Background (nav.html)  *********** */
 .homeBackground, .loginScreen {
-  height: 1000px;
+  height: 900px;
   background-image: url('http://cdn.history.com/sites/2/2015/09/iStock_000038100826_Large.jpg'); 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-#navHeader {
-  border-bottom: 2px solid #333333;
+.homeForm {
+  height: 50%;
+  margin-top: 0 auto; 
 }
-.nationalParkForm {
-  width: 400px;
-  height: 400px;
-  margin: 0 auto;
-  padding: 30px;
-  opacity: .9;
+.homeTitle {
+  color:rgb(48,48,48);
+  background-color: lightgrey;
+  width: 30%;
+  text-align: center;
+  font-size: xx-large;
   border-radius: 5px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  background-color: rgb(250,250,250);
+  opacity: .8;
+}
+.selectContainer {
+  width: 40%;
+  background-color: lightgrey;
+  border-radius: 5px;
+  opacity: .8;
+}
+#navHeader {
+  border-bottom: 2px solid rgb(48,48,48);
+  background-color: rgb(48,48,48);
+}
+md-input-container {
+  text-align: center;
+  color: rgb(48,48,48);
 }
 
 /* *********** Park View Header  *********** */
@@ -45,7 +58,7 @@ body, html {
   padding: 20px;
   margin: 0 auto;
   font-size: xx-large;
-  color: black;
+  color: rgb(48,48,48);
 }
 /* *********** Park Description View  *********** */
 .parkDescriptionView {
@@ -91,6 +104,9 @@ body, html {
 /* *********** Park Reviews View *********** */
 .form-control {
   border: 1px solid lightgrey;
+}
+md-list-item {
+  border-bottom: 2px solid rgb(121,85,72);
 }
 
 /* *********** Favorites View *********** */
@@ -150,4 +166,7 @@ li {
 li a:hover {
   text-decoration: underline;
   color: #eee;
+}
+md-button {
+  color: rgba(255,255,255,0.7;
 }
