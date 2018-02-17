@@ -1,6 +1,6 @@
 <md-content class="parkNavHeader" class="md-padding" ng-repeat="parks in vm.parkList.list.data">
   <div layout="row" layout-align="start start">
-    <md-button class="md-raised" ng-click="vm.favoritePark(vm.userObject._id, parks.parkCode)">
+    <md-button class="md-raised" ng-click="vm.favoritePark(parks.name, vm.userObject._id, parks.parkCode)">
         <md-icon md-svg-src="../../assets/svg/favorite.svg"></md-icon>
       Favorite Park
     </md-button>

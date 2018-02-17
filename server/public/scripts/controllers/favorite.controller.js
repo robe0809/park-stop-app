@@ -3,14 +3,13 @@ myApp.controller('FavoriteController', ['UserService', 'FavoriteService', functi
 
   var self = this;
 
+  self.userService = UserService;
   self.userObject = UserService.userObject;
   self.parkList = UserService.parkList;
+  self.favoriteList = FavoriteService.favoriteList;
 
-      // Getting park articles and events
-      self.favoriteInfo = function(currentNavItem, userId) { 
-        if(currentNavItem == 'favorites') {
-            FavoriteService.getFavorites(userId);
-        } 
-    }
+  FavoriteService.getFavorites(self.userObject._id);
+
+
 
 }]);

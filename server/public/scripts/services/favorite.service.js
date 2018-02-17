@@ -10,8 +10,9 @@ myApp.service('FavoriteService', ['$http', '$location', function($http, $locatio
     self.favoriteList = {list: []};
 
     // ********* Posting favorite parks to the data base *********
-    self.favoritePark = function (user_id, parkId) {
+    self.favoritePark = function (parkName, user_id, parkId) {
         let newFavorite = {
+            parkName,
             user_id, 
             parkId,
         }
@@ -26,7 +27,8 @@ myApp.service('FavoriteService', ['$http', '$location', function($http, $locatio
     self.getFavorites = function (user_id) {
         $http.get(`/api/user/favorites/${user_id}`) 
         .then(function (response) {
-            console.log('successful get on favorite', response);
+            self.favoriteList.list = response.data;
+            console.log('successful get on favorite', self.favoriteList.list);
         })
         .catch(function (error) {
             console.log('error on get favorites', error);

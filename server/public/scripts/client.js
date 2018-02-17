@@ -6,7 +6,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider', funct
   // Theme for web app
   $mdThemingProvider.theme('default')
     .primaryPalette('brown')
-    // .accentPalette()
+    .accentPalette('grey')
     .dark();
 
 

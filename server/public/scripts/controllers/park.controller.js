@@ -305,9 +305,9 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     ]
 
     // Favorites parks And adds them to the favorites page. 
-    self.favoritePark = function (userId, parkId) {
+    self.favoritePark = function (parkName, userId, parkId) {
         console.log('clicked');
-        FavoriteService.favoritePark(userId, parkId);
+        FavoriteService.favoritePark(parkName, userId, parkId);
     }
 
     // getting park descriptions

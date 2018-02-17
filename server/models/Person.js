@@ -17,6 +17,7 @@ const ReviewSchema = new Schema({
     ratings: { type: Number, required: true }
 })
 const FavoriteSchema = new Schema({
+    parkName: {type: String, required: true},
     user_id: {type: String, require: true},
     parkId: {type: String, required: true}
 })
