@@ -10,6 +10,12 @@ myApp.controller('FavoriteController', ['UserService', 'FavoriteService', functi
 
   FavoriteService.getFavorites(self.userObject._id);
 
+  // Deletes Favorites. 
+  self.deleteFavorites = function (favoriteId) {
+    FavoriteService.deleteFavorites(favoriteId);
+    FavoriteService.getFavorites(self.userObject._id);
+  }
+
 
 
 }]);

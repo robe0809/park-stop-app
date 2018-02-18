@@ -206,7 +206,23 @@ router.post('/favorites', (req, res) => {
     res.sendStatus(403);
   };
 })
-
+// *************** Delete Favorites ***************
+router.delete('/favorites/:id', (req, res) => {
+  let favoriteId = req.params.id;
+  console.log('favorite', favoriteId);
+  
+  Person.Favorite.findByIdAndRemove(
+    {"_id": favoriteId},
+    (error, removedFavorite) => {
+      if(error) {
+        console.log('error on delete favorite', error);
+        res.sendStatus(500);
+      } else {
+        console.log('favorite removed', removedFavorite);
+        res.sendStatus(200);
+      }
+    });
+})
 
 // *************** Authentication ***************
 // Handles Ajax request for user information if user is authenticated

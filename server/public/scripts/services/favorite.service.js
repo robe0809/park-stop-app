@@ -24,6 +24,8 @@ myApp.service('FavoriteService', ['$http', '$location', function($http, $locatio
             console.log('error on favorite post', error);
         })
     }
+
+    // gets all favorites for whoever is logged in  and displays them on the DOM. 
     self.getFavorites = function (user_id) {
         $http.get(`/api/user/favorites/${user_id}`) 
         .then(function (response) {
@@ -34,5 +36,15 @@ myApp.service('FavoriteService', ['$http', '$location', function($http, $locatio
             console.log('error on get favorites', error);
         })
     }
+
+    self.deleteFavorites = function (favoriteId) {
+        $http.delete(`/api/user/favorites/${favoriteId}`) 
+        .then(function (response) {
+            console.log('successful favorite delete', response);
+        })
+        .catch(function (error) {
+            console.log('error on delete favorites', error);
+        })
+    } 
   
   }]);

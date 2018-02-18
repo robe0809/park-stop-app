@@ -8,6 +8,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.parkList = UserService.parkList;
     self.userObject = UserService.userObject;
     self.infoList = UserService.infoList;
+    self.favoriteList = FavoriteService.favoriteList;
     
     console.log('userObject', self.userObject);
     
@@ -306,7 +307,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
 
     // Favorites parks And adds them to the favorites page. 
     self.favoritePark = function (parkName, userId, parkId) {
-        console.log('clicked');
         FavoriteService.favoritePark(parkName, userId, parkId);
     }
 
