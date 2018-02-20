@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="favoriteContainer">
-  <h1>{{vm.userObject.username}}'s favorite parks</h1>
+  <h1>Your Favorites</h1>
   <div class="favoriteCardContainer">
     <md-card class="favoriteCard" ng-repeat="favorites in vm.favoriteList.list">
       <md-card-header>
@@ -9,7 +9,7 @@
         </md-card-header-text>
       </md-card-header>
       <div class="favoriteImgContainer" ng-repeat="nationalPark in vm.nationalPark" ng-if="nationalPark.code === favorites.parkId" md-whiteframe="24"  layout layout-align="center center">
-          <img id="favoriteImg" ng-src="{{nationalPark.picture}}" class="md-card-image"  alt="Washed Out">
+          <a href='#!parks/description'><img id="favoriteImg" ng-src="{{nationalPark.picture}}"  ng-click="vm.parkDescription(nationalPark)" class="md-card-image"  alt="Washed Out"></a>
       </div>
       <md-card-title>
         <md-card-title-text>

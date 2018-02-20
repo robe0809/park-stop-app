@@ -1,10 +1,15 @@
-myApp.service('FavoriteService', ['$http', '$location', function ($http, $location) {
+myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($http, $location, $mdToast) {
     console.log('FavoriteService Loaded');
 
     var self = this;
     let favoriteArr;
     let isDuplicate;
-
+    let last = {
+        bottom: false,
+        top: true,
+        left: false,
+        right: true
+    };
 
     self.FavoriteObject = {};
     self.parkList = { list: [] };
@@ -20,17 +25,38 @@ myApp.service('FavoriteService', ['$http', '$location', function ($http, $locati
         }
         $http.post('/api/user/favorites', newFavorite)
             .then(function (response) {
-                if(response.data.response) {
-                    alert(response.data.response);
+                if (response.data.response) {
+                    swal(response.data.response);
                 } else {
-                self.getFavorites(user_id);
-                console.log('successful favorite post ', response);
+                    self.showSimpleToast();
+                    self.getFavorites(user_id);
+                    console.log('successful favorite post ', response);
                 };
             })
             .catch(function (error) {
                 console.log('error on favorite post', error.error);
             })
     }
+
+    // toast to let users know that they have favorited a park.
+    self.toastPosition = angular.extend({}, last);
+
+    self.getToastPosition = function () {
+        return Object.keys(self.toastPosition)
+            .filter(function (pos) { return self.toastPosition[pos]; })
+            .join(' ');
+    };
+
+    self.showSimpleToast = function () {
+        var pinTo = self.getToastPosition();
+
+        $mdToast.show(
+            $mdToast.simple()
+                .textContent(`You've successfully favorited this park!`)
+                .position(pinTo)
+                .hideDelay(3000)
+        );
+    };
 
     // gets all favorites for whoever is logged in  and displays them on the DOM. 
     self.getFavorites = function (user_id) {
@@ -41,7 +67,7 @@ myApp.service('FavoriteService', ['$http', '$location', function ($http, $locati
             })
             .catch(function (error) {
                 alert(error);
-                console.log('error on get favorites',error);
+                console.log('error on get favorites', error);
             })
     }
 

@@ -1,14 +1,9 @@
-myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', '$mdToast', function (UserService, ParkService, FavoriteService, $mdToast) {
+myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', function (UserService, ParkService, FavoriteService) {
     console.log('ParkController created');
 
     var self = this;
     let parkCode;
-    var last = {
-        bottom: false,
-        top: true,
-        left: false,
-        right: true
-      };
+
     // From User Service 
     self.userService = UserService;
     self.parkList = UserService.parkList;
@@ -312,30 +307,9 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         }
     ]
 
-    // toast to let users know that they have favorited a park.
-    self.toastPosition = angular.extend({},last);
-  
-    self.getToastPosition = function() {
-      return Object.keys(self.toastPosition)
-        .filter(function(pos) { return self.toastPosition[pos]; })
-        .join(' ');
-    };
-  
-    self.showSimpleToast = function() {
-        var pinTo = self.getToastPosition();
-    
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent(`You've successfully favorited this park!`)
-            .position(pinTo )
-            .hideDelay(3000)
-        );
-      };
-
     // Favorites parks And adds them to the favorites page. 
     self.favoritePark = function (parkName, userId, parkId) {
         FavoriteService.favoritePark(parkName, userId, parkId);
-        self.showSimpleToast();
     }
 
     // getting park descriptions

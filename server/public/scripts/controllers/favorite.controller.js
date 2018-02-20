@@ -296,11 +296,15 @@ myApp.controller('FavoriteController', ['UserService', 'FavoriteService', functi
         picture: "/assets/zion.jpg"
     }
   ]
+
   // Deletes Favorites. 
   self.deleteFavorites = function (favoriteId) {
     FavoriteService.deleteFavorites(favoriteId);
     FavoriteService.getFavorites(self.userObject._id);
   }
-
+  self.parkDescription = function (parkSelected) {
+      UserService.parkDescription(parkSelected);
+  }
+  
   FavoriteService.getFavorites(self.userObject._id);
 }]);

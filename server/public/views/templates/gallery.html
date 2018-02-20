@@ -1,21 +1,54 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
 
+<div ng-repeat="parks in vm.parkList.list.data">
+    <h1 class="photoHeader">Photos of {{parks.name}} National Park</h1>
+</div>
+
 <md-button class="md-raised" layout="row" layout-align="center end" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>
 
-<div class="gallery">
+<div class="photoContainer" >
+    <md-card class="whiteframe" ng-repeat="images in vm.image.list">
+        <img id="photo" ng-src="{{images.imgFile}}" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="start center">
+        <md-card-icon-actions>
+            <md-button class="md-icon-button" ng-click="vm.showAdvanced()">
+            <md-icon md-svg-icon="../../assets/svg/edit.svg"></md-icon>
+            </md-button>
+        </md-card-icon-actions>
+            <md-button class="md-raised" ng-if="vm.userObject._id == images.user_id" ng-click=" vm.deleteUserPhotos(images._id, vm.parkList.list.data)">Delete Photo</md-button>
+        </md-card-actions>
+        <md-card-content>
+
+        </md-card-content>
+    </md-card>
+</div>
+
+
+
+<!-- <div class="photoContainer">
+    <div class="whiteframe" ng-repeat="images in vm.image.list" md-whiteframe="24"  layout layout-align="space-between center">
+        <img id="photo" ng-src="{{images.imgFile}}">   
+        <div class="middle">
+            <span class="text">X</span>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="gallery">
     <div class="whiteframe">
         <md-card class="photoCard" ng-repeat="images in vm.image.list">
-            <img ng-src="{{images.imgFile}}" class="md-card-image" alt="Washed Out">
+            <div class="favoriteImgContainer" md-whiteframe="24"  layout layout-align="center">
+                <img id="galleryImage" ng-src="{{images.imgFile}}" class="md-card-image" alt="Washed Out">
+            </div>
             <div>
                 <p>
                    {{images.description}}
                 </p>
             </div>
+        </md-card>
             <md-button class="md-icon-button" ng-click="vm.addCaption()">
                 <md-icon ng-if="vm.userObject._id == images.user_id" md-svg-icon="../../assets/svg/edit.svg"></md-icon>
             </md-button>
-            <md-button class="md-raised" ng-if="vm.userObject._id == images.user_id" ng-click=" vm.deleteUserPhotos(images._id, vm.parkList.list.data)">Delete Photo</md-button>
-        </md-card>
+            
     </div>
-</div>
+</div> -->
