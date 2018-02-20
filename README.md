@@ -1,6 +1,6 @@
 # Park Stop Application
 
-I found that many free National Park applications do not contain useful information all in one place. The Park Stop application was designed to allow users access to key information all in one place. The Park Stop application contains events, articles, photo galleries, and reviews about any one of the 59 U.S National Parks. 
+I found that many free National Park applications do not contain useful information all in one place. The Park Stop application was designed to allow users access to key information when they use the Park Stop application. The Park Stop application contains events, articles, photo galleries, and reviews about any one of the 59 U.S National Parks. 
 
 ## Built With
 
