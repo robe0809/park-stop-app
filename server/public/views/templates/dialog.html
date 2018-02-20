@@ -5,17 +5,17 @@
         <h2>Hello, {{vm.userObject.username}}! Share your experience!</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="vm.cancel()">
-            <md-icon md-svg-src="../../assets/svg/Cancel.svg" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="../../assets/svg/Cancel.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
 
     <md-dialog-content ng-repeat="park in vm.parkList.list.data">
-      <div class="md-dialog-content"  layout="column">
+      <div class="md-dialog-content" layout="column">
         <h3>How was your trip to {{park.name}} National Park? </h3>
         <h3>Rate {{park.name}}</h3>
         <!-- first rate is the star count -->
-        <jk-rating-stars rating="vm.firstRate" ></jk-rating-stars>
+        <jk-rating-stars rating="vm.firstRate"></jk-rating-stars>
         <div style="width: 100px"></div>
         <md-input-container class="form-control">
           <textarea rows="5" ng-model="vm.review" placeholder="Your Review" md-no-asterisk required></textarea>
@@ -24,8 +24,8 @@
     </md-dialog-content>
     <md-dialog-actions layout="row" ng-repeat="park in vm.parkList.list.data">
       <span flex></span>
-      <md-button class="md-raised" ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, park.parkCode)" >
-          Submit Review
+      <md-button class="md-raised" ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, park.parkCode)">
+        Submit Review
       </md-button>
     </md-dialog-actions>
   </form>

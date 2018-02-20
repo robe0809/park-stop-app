@@ -1,36 +1,33 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
-<md-button id="myBtn" class="md-raised" ng-click="vm.showAdvanced()">Add Review</md-button>
-<div 
-    layout="column"
-    layout-align="start"
-    ng-repeat="parks in vm.parkList.list.data">
-    <md-toolbar class="md-hue-9" >
+
+<div layout="row" layout-align="end">
+    <md-button id="reviewButton" class="md-raised" ng-click="vm.showAdvanced()" layout-align="end">Add Review</md-button>
+</div>
+<div class="reviewBody" layout="column" ng-repeat="parks in vm.parkList.list.data">
+    <md-toolbar class="md-hue-9">
         <div class="md-toolbar-tools">
-            <span>{{parks.name}} Reviews</span>
+            <h1 id="reviewHeader">{{parks.name}} Reviews</h1>
         </div>
     </md-toolbar>
-      
+
     <md-content>
-    <md-list>
-        <md-list-item ng-repeat="userReviews in vm.reviewList.list" class="md-3-line">
-        <!-- <img ng-src="" class="md-avatar" alt="" /> -->
-        <div class="md-list-item-text" layout="column">
-            <h3>{{userReviews.username}}</h3>
-            <p>{{userReviews.comment}}</p>
-            <jk-rating-stars rating="userReviews.ratings" readonly></jk-rating-stars>
-            <div style="width: 100px"></div>
-        </div>
-        <md-button 
-        class="md-raised"
-        ng-if="vm.userObject._id == userReviews.user_id"
-        ng-click="vm.deleteReview(userReviews._id, parks.parkCode)">
-            Delete Review
-        </md-button>
-        </md-list-item>
-    </md-list>
+        <md-list>
+            <md-list-item ng-repeat="userReviews in vm.reviewList.list" class="md-3-line md-long-text">
+                <!-- <img ng-src="" class="md-avatar" alt="" /> -->
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{userReviews.username}}</h3>
+                    <jk-rating-stars rating="userReviews.ratings" readonly></jk-rating-stars>
+                    <p>{{userReviews.comment}}</p>
+                    <div style="width: 100px"></div>
+                </div>
+                <div>
+                    <md-button class="md-raised" ng-if="vm.userObject._id == userReviews.user_id" ng-click="vm.deleteReview(userReviews._id, parks.parkCode)"
+                        md-padding>
+                        Delete Review
+                    </md-button>
+                </div>
+            </md-list-item>
+        </md-list>
     </md-content>
 </div>
-
-
-

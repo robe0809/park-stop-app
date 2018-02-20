@@ -1,51 +1,27 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
 
-<div >
+<div>
 
     <div class="parkArticlesView" flex-xs flex-gt-xs="50" layout="column">
-        <md-card 
-            class="articlCards"
-            md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" 
-            md-theme-watch
-            ng-repeat="articles in vm.infoList.list.data">
+        <md-card class="articlCards" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-repeat="articles in vm.infoList.list.data">
             <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">Card with image</span>
-                <span class="md-subhead">{{articles.listingDescription}}</span>
-            </md-card-title-text>
-            <md-card-title-media>
-                <figure class="md-media-lg card-media">
-                    <img ng-src="{{articles.listingImage.url}}" alt="">
-                </figure>
-            </md-card-title-media>
+                <md-card-title-text>
+                    <span class="md-headline">{{articles.title}}</span>
+                    <span class="md-subhead">{{articles.listingDescription}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <figure class="md-media-lg card-media">
+                        <img ng-src="{{articles.listingImage.url}}" alt="">
+                    </figure>
+                </md-card-title-media>
             </md-card-title>
             <md-card-actions layout="row" layout-align="center end">
-            <a href="{{articles.url}}"><md-button class="md-raised md-primary" >Read Article</md-button></a> 
+                <a target="_blank" href="{{articles.url}}">
+                    <md-button class="md-raised md-primary">Read Article</md-button>
+                </a>
             </md-card-actions>
         </md-card>
     </div>
 
 </div>
-    <!-- <div layout="column" layout-wrap flex=33>
-
-        <md-card ng-repeat="articles in vm.infoList.list.data">
-            <img ng-src="{{articles.listingImage.url}}" class="md-card-image" alt="Washed Out">
-            <md-card-title>
-                <md-card-title-text>
-                <span class="md-headline">Action buttons</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <p>
-                {{articles.listingDescription}}
-                </p>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-            </md-card-actions>
-        </md-card>
-
-    </div> -->
-

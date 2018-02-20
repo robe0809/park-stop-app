@@ -1,9 +1,26 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
 <div>
-    <p ng-repeat="events in vm.infoList.list.data"> 
-        {{events.location}}
-        {{events.dates}}
-        {{events.abstract}}
-    </p>
+
+    <md-card ng-repeat="events in vm.infoList.list.data">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{events.title}}</span>
+                <span class="md-subhead">
+                    <strong>Where:</strong>
+                    <p>{{events.location}}</p>
+                </span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div>
+                <strong>What:</strong>
+                <p>{{events.abstract}}</p>
+            </div>
+            <div class="md-media-sm card-media">
+                <strong>When:</strong>
+                <p>{{events.dates}}</p>
+            </div>
+        </md-card-content>
+    </md-card>
 </div>

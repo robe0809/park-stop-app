@@ -10,10 +10,13 @@ const db = require('./modules/db.config.js');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const photoRouter = require('./routes/photo.router');
+const reviewRouter = require('./routes/review.router');
+const favoriteRouter = require('./routes/favorite.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Session Configuration
 app.use(sessionConfig);
@@ -24,6 +27,9 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/user/', photoRouter);
+app.use('/api/user/', reviewRouter);
+app.use('/api/user/', favoriteRouter);
 
 // Serve static files
 app.use(express.static('server/public'));

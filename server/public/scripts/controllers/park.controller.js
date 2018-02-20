@@ -1,21 +1,28 @@
-myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', function(UserService, ParkService, FavoriteService) {
-  console.log('ParkController created');
-  
+myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', '$mdToast', function (UserService, ParkService, FavoriteService, $mdToast) {
+    console.log('ParkController created');
+
     var self = this;
     let parkCode;
+    var last = {
+        bottom: false,
+        top: true,
+        left: false,
+        right: true
+      };
     // From User Service 
     self.userService = UserService;
     self.parkList = UserService.parkList;
+    self.userName = UserService.userName;
     self.userObject = UserService.userObject;
     self.infoList = UserService.infoList;
     self.favoriteList = FavoriteService.favoriteList;
-    
+
     console.log('userObject', self.userObject);
-    
+
     // From Filestack Service
     self.image = ParkService.image;
     self.userImage = ParkService.userImage;
-    
+
     self.nationalPark = [
         {
             name: "Acadia National Park",
@@ -24,129 +31,129 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         },
         {
             name: "Arches National Park",
-            code:  "arch",
+            code: "arch",
             picture: "/assets/Arches.jpg"
         },
         {
             name: "Badlands National Park",
             code: "badl",
             picture: "/assets/Badlands.jpg"
-        },   
+        },
         {
             name: "Big Bend National Park",
             code: "bibe",
             picture: "/assets/Big-Bend.jpg"
-        }, 
+        },
         {
             name: "Biscayne National Park",
             code: "bisc",
             picture: "/assets/Biscayne.jpg"
-        }, 
+        },
         {
             name: "Black Canyon Of The Gunnison National Park",
             code: "blca",
             picture: "/assets/Black-Canyon-Gunnison.jpg"
-        }, 
+        },
         {
             name: "Bryce Canyon National Park",
             code: "brca",
             picture: "/assets/Bryce-Canyon.jpg"
-        }, 
+        },
         {
             name: "Canyonlands National Park",
             code: "cany",
             picture: "/assets/Canyonlands.jpg"
-        }, 
+        },
         {
             name: "Capitol Reef National Park",
             code: "care",
             picture: "/assets/Capitol-Reef.jpg"
-        }, 
+        },
         {
             name: "Carlsbad Caverns National Park",
             code: "cave",
             picture: "/assets/Carlsbad.jpg"
-        }, 
+        },
         {
             name: "Channel Islands National Park",
             code: "chis",
             picture: "/assets/Channel-Islands.jpg"
-        }, 
+        },
         {
             name: "Congaree National Park",
             code: "cong",
             picture: "/assets/Congaree.jpg"
-        }, 
+        },
         {
             name: "Crater Lake National Park",
             code: "crla",
             picture: "/assets/Crater-lake.jpg"
-        }, 
+        },
         {
             name: "Cuyahoga Valley National Park",
             code: "cuva",
             picture: "/assets/Cuyahoga.jpg"
-        }, 
+        },
         {
             name: "Death Valley National Park",
             code: "deva",
             picture: "/assets/Death-Valley.jpg"
-        }, 
+        },
         {
             name: "Denali National Park & Preserve",
             code: "dena",
             picture: "/assets/Denali.jpg"
-        }, 
+        },
         {
             name: "Dry Tortugas National Park",
             code: "drto",
             picture: "/assets/Dry-Tortugas.jpg"
-        }, 
+        },
         {
             name: "Everglades National Park",
             code: "ever",
             picture: "/assets/Everglades.jpg"
-        }, 
+        },
         {
             name: "Gates Of The Arctic National Park & Preserve",
             code: "gaar",
             picture: "/assets/Gates-of-the-Arctic.jpg"
-        }, 
+        },
         {
             name: "Glacier National Park",
             code: "glac",
             picture: "/assets/Glacier.jpg"
-        }, 
+        },
         {
             name: "Glacier Bay National Park & Preserve",
             code: "glba",
             picture: "/assets/Glacier-Bay.jpg"
-        }, 
+        },
         {
             name: "Grand Canyon National Park",
             code: "grca",
             picture: "/assets/Grand-Canyon.jpg"
-        }, 
+        },
         {
             name: "Grand Teton National Park",
             code: "grte",
             picture: "/assets/Grand-Teton.jpg"
-        }, 
+        },
         {
             name: "Great Basin National Park",
             code: "grba",
             picture: "/assets/Great-Basin.jpg"
-        }, 
+        },
         {
             name: "Great Sand Dunes National Park & Preserve",
             code: "grsa",
             picture: "/assets/Great-Sand-Dunes.jpg"
-        }, 
+        },
         {
             name: "Great Smoky Mountains National Park",
             code: "grsm",
             picture: "/assets/Great-Smoky-Mountains.jpg"
-        }, 
+        },
         {
             name: "Guadalupe Mountains National Park",
             code: "gumo",
@@ -154,7 +161,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         },
         {
             name: "Haleakala National Park",
-            code:  "hale",
+            code: "hale",
             picture: "/assets/Haleakala.jpg"
         },
         {
@@ -189,8 +196,8 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         },
         {
             name: "Kobuk Valley National Park",
-            code:  "kova",
-            picture: "/assets/Kobuk-Valley.jpg" 
+            code: "kova",
+            picture: "/assets/Kobuk-Valley.jpg"
         },
         {
             name: "Lake Clark National Park & Preserve",
@@ -250,7 +257,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         {
             name: "Saguaro National Park",
             code: "sagu",
-            picture: "/assets/Saquaro.jpg"
+            picture: "/assets/Saguaro.jpg"
         },
         {
             name: "Sequoia & Kings Canyon National Parks",
@@ -302,22 +309,44 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
             name: "Zion National Park",
             code: "zion",
             picture: "/assets/zion.jpg"
-        }    
+        }
     ]
+
+    // toast to let users know that they have favorited a park.
+    self.toastPosition = angular.extend({},last);
+  
+    self.getToastPosition = function() {
+      return Object.keys(self.toastPosition)
+        .filter(function(pos) { return self.toastPosition[pos]; })
+        .join(' ');
+    };
+  
+    self.showSimpleToast = function() {
+        var pinTo = self.getToastPosition();
+    
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(`You've successfully favorited this park!`)
+            .position(pinTo )
+            .hideDelay(3000)
+        );
+      };
 
     // Favorites parks And adds them to the favorites page. 
     self.favoritePark = function (parkName, userId, parkId) {
         FavoriteService.favoritePark(parkName, userId, parkId);
+        self.showSimpleToast();
     }
 
     // getting park descriptions
-    self.parkDescription = function(parkSelected) {
+    self.parkDescription = function (parkSelected) {
         UserService.parkDescription(parkSelected);
     }
-
+    
+    
     // Getting park articles and events
-    self.parkInfo = function(currentNavItem, parkSelected) { 
-        if(currentNavItem == 'gallery') {
+    self.parkInfo = function (currentNavItem, parkSelected) {
+        if (currentNavItem == 'gallery') {
             ParkService.getAllPhotos(parkSelected);
         } else if (currentNavItem == 'reviews') {
             ParkService.getReviews(parkSelected);
@@ -328,10 +357,10 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     }
 
     // Deletes Users photos 
-    self.deleteUserPhotos = function (imageId, parkId) {  
-        for(let i = 0; i < parkId.length; i++) {
+    self.deleteUserPhotos = function (imageId, parkId) {
+        for (let i = 0; i < parkId.length; i++) {
             parkCode = parkId[i].parkCode;
-         }
+        }
         ParkService.deleteUserPhotos(imageId);
         ParkService.getAllPhotos(parkCode);
     }
@@ -341,8 +370,8 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         // loops through parkList to get the parkCode
         // this allows the parkCode to be sent and stored with the image
         // as well as the user ID.
-        for(let i = 0; i < parkId.length; i++) {
-           parkCode = parkId[i].parkCode;
+        for (let i = 0; i < parkId.length; i++) {
+            parkCode = parkId[i].parkCode;
         }
         ParkService.openPicker(userId, parkCode, image);
     }

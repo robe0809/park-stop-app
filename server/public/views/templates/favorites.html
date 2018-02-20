@@ -1,40 +1,23 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+<div class="favoriteContainer">
   <h1>{{vm.userObject.username}}'s favorite parks</h1>
-<div>
-  <md-card ng-repeat="favorites in vm.favoriteList.list">
-
-    <md-card-header>
-      <md-card-avatar>
-        <!-- <img class="md-user-avatar" src="img/100-2.jpeg"/> -->
-      </md-card-avatar>
-      <md-card-header-text>
-        <h1 class="md-headline">{{favorites.parkName}}</h1>
-        <!-- <span class="md-subhead"></span> -->
-      </md-card-header-text>
-    </md-card-header>
-    <!-- <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out"> -->
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline"></span>
-        <!-- <span class="md-subhead"></span> -->
-      </md-card-title-text>
-    </md-card-title>
-    <!-- <md-card-actions layout="row" layout-align="start center">
-      <md-button>Action 1</md-button>
-      <md-button>Action 2</md-button>
-      <md-card-icon-actions>
-        <md-button class="md-icon-button" aria-label="toggle">
-          <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-        </md-button>
-      </md-card-icon-actions>
-    </md-card-actions> -->
-    <md-card-content>
-      <p>
-        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-      </p>
-    </md-card-content>
-    <md-button class="md-raised" ng-click="vm.deleteFavorites(favorites._id)">Delete from Favorites List</md-button>
-  </md-card>
-</div>
+  <div class="favoriteCardContainer">
+    <md-card class="favoriteCard" ng-repeat="favorites in vm.favoriteList.list">
+      <md-card-header>
+        <md-card-header-text layout="row" layout-align="center center">
+          <h1 class="md-headline">{{favorites.parkName}}</h1>
+        </md-card-header-text>
+      </md-card-header>
+      <div class="favoriteImgContainer" ng-repeat="nationalPark in vm.nationalPark" ng-if="nationalPark.code === favorites.parkId" md-whiteframe="24"  layout layout-align="center center">
+          <img id="favoriteImg" ng-src="{{nationalPark.picture}}" class="md-card-image"  alt="Washed Out">
+      </div>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline"></span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+      </md-card-content>
+      <md-button class="md-raised" ng-click="vm.deleteFavorites(favorites._id)">Delete from Favorites List</md-button>
+    </md-card>
+  </div>

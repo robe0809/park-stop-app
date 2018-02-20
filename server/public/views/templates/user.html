@@ -1,35 +1,26 @@
-<div class="loginScreen">
-        <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
-        <h1 class="lead">Login</h1>
-        
-        <!-- Login form -->
-        <md-content 
-            layout-align="space-around center"
-            layout-gt-sm="row" 
-            layout-padding >
-            <div 
-                class="form" 
-                layout="column" 
-                layout-align="center center"
-                layout-margin>
-    
-                <!-- Username Input -->
+
+<div class="loginScreen" layout="row" layout-align="center center">
+    <!-- Login form -->
+    <md-content class="formContainer" layout-align="center center" layout-gt-sm="column" layout-padding>
+        <div class="form" layout="column" layout-align="center center" layout-margin>
+
+            <!-- Username Input -->
+            <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
+                <h1 class="lead">Login</h1>
                 <md-input-container>
-                <label layout="center center" for="username">Username</label>
-                <input type="text" ng-model="vm.user.username">
+                    <label layout="center center" for="username">Username</label>
+                    <input type="text" ng-model="vm.user.username">
                 </md-input-container>
-    
+
                 <!-- Password Input -->
                 <md-input-container>
-                <label for="password">Password</label> 
-                <input  type="password" ng-model="vm.user.password">
+                    <label for="password">Password</label>
+                    <input type="password" ng-model="vm.user.password">
                 </md-input-container>
-    
+
                 <!-- Login Button -->
                 <md-button class="md-raised md-primary" ng-click="vm.login()">Log In</md-button>
-                <a href="#!register">Register</a>            
-            </div>
-        </md-content>
-    </div>
-
-
+                <a href="#!register">Register</a>
+        </div>
+    </md-content>
+</div>

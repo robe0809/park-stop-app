@@ -1,34 +1,27 @@
-<div>
-    <h1 class="lead">Register</h1>
-    <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h1>
-    <!-- Register Form -->
-    <md-content 
-      layout-align="space-around center"
-      layout-gt-sm="row" 
-      layout-padding>  
+<div class="registerScreen" layout="row" layout-align="center center">
+  <!-- Register Form -->
+  <md-content class="formContainer" layout-align="space-around center" layout-gt-sm="row" layout-padding>
 
-      <div 
-        class="form" 
-        layout="column" 
-        layout-align="center center"
-        layout-margin>
+    <div class="form" layout="column" layout-align="center center" layout-margin>
 
-        <!-- Username Input -->
-        <md-input-container>
-          <label layout="center center" for="username">Username</label>
-          <input type="text" ng-model="vm.user.username">
-        </md-input-container>
+      <!-- Username Input -->
+      <h1 class="lead">Register</h1>
+      <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h1>
+      <md-input-container>
+        <label layout="center center" for="username">Username</label>
+        <input type="text" ng-model="vm.user.username">
+      </md-input-container>
 
-        <!-- Password Input -->
-        <md-input-container>
-          <label for="password">Password</label> 
-          <input  type="password" ng-model="vm.user.password">
-        </md-input-container>
+      <!-- Password Input -->
+      <md-input-container>
+        <label for="password">Password</label>
+        <input type="password" ng-model="vm.user.password">
+      </md-input-container>
 
-        <!-- Register Button -->
-        <md-button class="md-raised md-primary" ng-click="vm.registerUser()">Register</md-button>
-        <a href="#!home">Cancel</a>    
+      <!-- Register Button -->
+      <md-button class="md-raised md-primary" ng-click="vm.registerUser()">Register</md-button>
+      <a href="#!home">Cancel</a>
 
-      </div>
-    </md-content>
+    </div>
+  </md-content>
 </div>
