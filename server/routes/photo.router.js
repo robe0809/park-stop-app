@@ -8,82 +8,84 @@ const router = express.Router();
 // *************** Getting All Photos ***************
 router.get('/parks/gallery/:id', (req, res) => {
 
-    let parkId = req.params.id
-    console.log('parkId', req.params.id);
-    if (req.isAuthenticated()) {
-      Person.Image.find({ parkId }, (error, image) => {
-        // console.log(image)
-        if (error) {
-          console.log('error on find allImages', error);
-          res.sendStatus(500);
-        }
-        else {
-          console.log('found images documents', image);
-          res.send(image);
-        }
-      });
-    } else {
-        res.sendStatus(403);
-    }
-  });
-  
-  // *************** Posting Photos ***************
-  router.post('/parks/gallery/', (req, res) => {
-  
-    console.log('body', req.body);
-    let user = req.user._id;
-    if (req.isAuthenticated()) {
-      console.log('user', req.user._id);
-      let newImage = new Person.Image(req.body);
-      newImage.save((error, imageDoc) => {
-        if (error) {
-          res.sendStatus(500);
-        }
-        else {
-          console.log('saved new ReviewDoc', imageDoc);
-          Person.Person.findByIdAndUpdate(
-            { "_id": user, },
-            // push this new object into the array on this image Document
-            { $push: { userImage: newImage } },
-            (pusherror, doc) => {
-              if (pusherror) {
-                console.log('error on push to imageArray: ', pusherror);
-                res.sendStatus(500);
-              } else {
-                console.log('updated person Document: ', doc);
-                console.log('-----------------------------');
-  
-                res.sendStatus(201);
-              };
-            }
-          );
-        };
-      });
-    }
-    else {
-      res.sendStatus(403);
-    };
-  });
-  
-  // *************** Deleting Photos ***************
-  router.delete('/parks/gallery/:id', (req, res) => {
-    let imageId = req.params.id;
-    console.log('ha', imageId);
-    if (req.isAuthenticated()) {
-      Person.Image.findByIdAndRemove(
-        { "_id": imageId },
-        (error, removedImage) => {
-          if (error) {
-            console.log('error on delete image', error);
-            res.sendStatus(500);
-          } else {
-            console.log('Image removed', removedImage);
-            res.sendStatus(200);
-          }
-        });
-    } else {
-      res.sendStatus(403);
-    }
-  });
+  let parkId = req.params.id
+  console.log('parkId', req.params.id);
+  if (req.isAuthenticated()) {
+    Person.Image.find({ parkId }, (error, image) => {
+      // console.log(image)
+      if (error) {
+        console.log('error on find allImages', error);
+        res.sendStatus(500);
+      }
+      else {
+        console.log('found images documents', image);
+        res.send(image);
+      }
+    });
+  } else {
+    res.sendStatus(403);
+  }
+});
 
-  module.exports = router;
+// *************** Posting Photos ***************
+router.post('/parks/gallery/', (req, res) => {
+
+  console.log('body', req.body);
+  console.log('image', req.body.imageId);
+
+  let user = req.user._id;
+  if (req.isAuthenticated()) {
+    console.log('user', req.user._id);
+    let newImage = new Person.Image(req.body);
+    newImage.save((error, imageDoc) => {
+      if (error) {
+        res.sendStatus(500);
+      }
+      else {
+        console.log('saved new imageDoc', imageDoc);
+        Person.Person.findByIdAndUpdate(
+          { "_id": user, },
+          // push this new object into the array on this image Document
+          { $push: { userImage: newImage } },
+          (pusherror, doc) => {
+            if (pusherror) {
+              console.log('error on push to imageArray: ', pusherror);
+              res.sendStatus(500);
+            } else {
+              console.log('updated person Document: ', doc);
+              console.log('-----------------------------');
+
+              res.sendStatus(201);
+            };
+          }
+        );
+      };
+    });
+  }
+  else {
+    res.sendStatus(403);
+  };
+});
+
+// *************** Deleting Photos ***************
+router.delete('/parks/gallery/:id', (req, res) => {
+  let imageId = req.params.id;
+  console.log('ha', imageId);
+  if (req.isAuthenticated()) {
+    Person.Image.findByIdAndRemove(
+      { "_id": imageId },
+      (error, removedImage) => {
+        if (error) {
+          console.log('error on delete image', error);
+          res.sendStatus(500);
+        } else {
+          console.log('Image removed', removedImage);
+          res.sendStatus(200);
+        }
+      });
+  } else {
+    res.sendStatus(403);
+  }
+});
+
+module.exports = router;

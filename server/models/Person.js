@@ -6,9 +6,10 @@ const Schema = mongoose.Schema;
 const ImageSchema = new Schema({
     user_id: { type: String, required: true },
     parkId: { type: String, required: true },
-    description: { type: String },
+    description: {type: String},
     imgFile: { type: String, required: true }
 })
+
 const ReviewSchema = new Schema({
     username: { type: String, required: true },
     user_id: { type: String, required: true },
@@ -36,5 +37,5 @@ let Image = mongoose.model('Image', ImageSchema)
 let Review = mongoose.model('Review', ReviewSchema)
 let Favorite = mongoose.model('Favorite', FavoriteSchema)
 
-module.exports = { Person, Image, Review, Favorite };
+module.exports = { Person, Image, Review, Favorite};
 

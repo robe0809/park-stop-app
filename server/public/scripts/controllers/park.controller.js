@@ -1,4 +1,4 @@
-myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', function (UserService, ParkService, FavoriteService) {
+myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteService', '$mdDialog', function (UserService, ParkService, FavoriteService, $mdDialog) {
     console.log('ParkController created');
 
     var self = this;
@@ -316,8 +316,8 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.parkDescription = function (parkSelected) {
         UserService.parkDescription(parkSelected);
     }
-    
-    
+
+
     // Getting park articles and events
     self.parkInfo = function (currentNavItem, parkSelected) {
         if (currentNavItem == 'gallery') {
@@ -349,5 +349,44 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         }
         ParkService.openPicker(userId, parkCode, image);
     }
-    // add Reviews
+
+    // ************* Modal for Edit *************
+    self.showAdvanced = function (ev) {
+        $mdDialog.show({
+            controller: DialogController,
+            controllerAs: "vm",
+            templateUrl: '../../views/templates/editPhoto.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+    };
+
+    // Modal Controller
+    function DialogController($mdDialog) {
+        var self = this;
+
+        self.imageId;
+        self.image = ParkService.image;
+        self.userObject = UserService.userObject;
+
+        self.hide = function () {
+            $mdDialog.hide();
+        };
+
+        self.cancel = function () {
+            $mdDialog.cancel();
+        };
+
+        self.addDescription = function (user_id, imageId, description) {
+            ParkService.addDescription(user_id, imageId, description)
+        }
+
+        for (let i = 0; i < self.image.list.length; i++) {
+            self.imageId = self.image.list[i]._id;
+        }
+
+
+    };
+
 }]);

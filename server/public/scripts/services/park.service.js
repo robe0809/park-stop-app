@@ -7,7 +7,8 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     self.image = { list: [] };
     self.userImage = { list: [] };
     self.reviewList = { list: [] };
-
+    self.descriptions = { list: [] };
+    
     // ********* Photo Uploads *********
     self.openPicker = function (userId, parkCode, image) {
         fsClient.pick({
@@ -51,7 +52,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
         $http.get(`/api/user/parks/gallery/${parkId}`)
             .then(function (response) {
                 self.image.list = response.data;
-                console.log('All Images: ', self.image.list);
+                console.log('All descriptions: ', self.image.list);
             })
             // error response of unauthorized (403)
             .catch(function (error) {
@@ -70,6 +71,24 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
                 console.log('error on getuser photos', error);
             })
     }
+
+    // ********* Adding Photo Descriptions *********
+    self.addDescription = function (user_id, imageId, description) {
+        let newDescription =
+            {
+                user_id,
+                imageId,
+                description,
+            }
+        $http.post(`/api/user/parks/gallery`, newDescription)
+            .then(function (response) {
+                console.log('successful post', response);
+            })
+            .catch(function (error) {
+                console.log('error on post', error);
+            })
+    }
+
     // ********* Adding Reviews *********
     self.submitReview = function (username, user_id, ratings, comment, parkId) {
         let newReview = {

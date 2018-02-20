@@ -12,7 +12,7 @@
         <img id="photo" ng-src="{{images.imgFile}}" class="md-card-image" alt="Washed Out">
         <md-card-actions layout="row" layout-align="start center">
         <md-card-icon-actions>
-            <md-button class="md-icon-button" ng-click="vm.showAdvanced()">
+            <md-button class="md-icon-button" ng-if="vm.userObject._id == images.user_id" ng-click="vm.showAdvanced()">
             <md-icon md-svg-icon="../../assets/svg/edit.svg"></md-icon>
             </md-button>
         </md-card-icon-actions>
