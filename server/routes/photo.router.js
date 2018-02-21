@@ -31,12 +31,11 @@ router.get('/parks/gallery/:id', (req, res) => {
 router.post('/parks/gallery/', (req, res) => {
 
   console.log('body', req.body);
-  console.log('image', req.body.imageId);
 
   let user = req.user._id;
   if (req.isAuthenticated()) {
-    console.log('user', req.user._id);
     let newImage = new Person.Image(req.body);
+    let newDescription = req.body.description;
     newImage.save((error, imageDoc) => {
       if (error) {
         res.sendStatus(500);
@@ -46,7 +45,7 @@ router.post('/parks/gallery/', (req, res) => {
         Person.Person.findByIdAndUpdate(
           { "_id": user, },
           // push this new object into the array on this image Document
-          { $push: { userImage: newImage } },
+          { $push: { userImage: newImage , description: newDescription} },
           (pusherror, doc) => {
             if (pusherror) {
               console.log('error on push to imageArray: ', pusherror);
@@ -87,5 +86,25 @@ router.delete('/parks/gallery/:id', (req, res) => {
     res.sendStatus(403);
   }
 });
-
+// *************** Posting Photos Descriptions ***************
+router.post('/parks/gallery/:id', (req, res) => {
+  let imageId = req.params.id
+  console.log('imageId', imageId);
+  if (req.isAuthenticated()) {
+    let newDescription = req.body.description;
+    Person.Image.update({ "_id": imageId }, {$set: {description: newDescription}}, (error, descriptionDoc) => {
+      if (error) {
+        console.log('hitting', error);
+        res.sendStatus(500);
+      }
+      else {
+        console.log('received description', descriptionDoc);
+         res.sendStatus(201);
+      };
+    });
+  }
+  else {
+    res.sendStatus(403);
+  };
+});
 module.exports = router;

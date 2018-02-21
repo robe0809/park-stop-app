@@ -8,7 +8,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     self.userImage = { list: [] };
     self.reviewList = { list: [] };
     self.descriptions = { list: [] };
-    
+
     // ********* Photo Uploads *********
     self.openPicker = function (userId, parkCode, image) {
         fsClient.pick({
@@ -73,14 +73,14 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     }
 
     // ********* Adding Photo Descriptions *********
-    self.addDescription = function (user_id, imageId, description) {
+    self.addDescription = function (imageId, description) {
         let newDescription =
             {
-                user_id,
-                imageId,
                 description,
             }
-        $http.post(`/api/user/parks/gallery`, newDescription)
+            console.log('description', description);
+            
+        $http.post(`/api/user/parks/gallery/${imageId}`, newDescription)
             .then(function (response) {
                 console.log('successful post', response);
             })
