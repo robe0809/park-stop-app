@@ -23,7 +23,8 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
             user_id,
             parkId,
         }
-        $http.post('/api/user/favorites', newFavorite)
+        
+        return $http.post('/api/user/favorites', newFavorite)
             .then(function (response) {
                 if (response.data.response) {
                     swal(response.data.response);
@@ -75,6 +76,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
         $http.delete(`/api/user/favorites/${favoriteId}`)
             .then(function (response) {
                 console.log('successful favorite delete', response);
+                // get 
             })
             .catch(function (error) {
                 console.log('error on delete favorites', error);

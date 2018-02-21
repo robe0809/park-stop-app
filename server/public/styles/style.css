@@ -103,6 +103,9 @@ body, html {
 .photoHeader {
   text-align: center;
 }
+.photoDescription {
+  text-align: center;
+}
 .whiteframe {
   width: 400px;
 }

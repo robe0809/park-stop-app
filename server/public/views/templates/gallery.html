@@ -7,19 +7,21 @@
 
 <md-button class="md-raised" layout="row" layout-align="center end" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>
 
-<div class="photoContainer" >
+<div class="photoContainer">
     <md-card class="whiteframe" ng-repeat="images in vm.image.list">
         <img id="photo" ng-src="{{images.imgFile}}" class="md-card-image" alt="Washed Out">
         <md-card-actions layout="row" layout-align="start center">
-        <md-card-icon-actions>
-            <md-button class="md-icon-button" ng-if="vm.userObject._id == images.user_id" ng-click="vm.showAdvanced()">
-            <md-icon md-svg-icon="../../assets/svg/edit.svg"></md-icon>
-            </md-button>
-        </md-card-icon-actions>
+            <md-card-icon-actions>
+                <md-button class="md-icon-button" ng-if="vm.userObject._id == images.user_id" ng-click="vm.showAdvanced(); vm.setIndex($index)">
+                    <md-icon md-svg-icon="../../assets/svg/edit.svg"></md-icon>
+                </md-button>
+            </md-card-icon-actions>
             <md-button class="md-raised" ng-if="vm.userObject._id == images.user_id" ng-click=" vm.deleteUserPhotos(images._id, vm.parkList.list.data)">Delete Photo</md-button>
         </md-card-actions>
         <md-card-content>
-
+            <p>
+                {{images.description}}
+            </p>
         </md-card-content>
     </md-card>
 </div>

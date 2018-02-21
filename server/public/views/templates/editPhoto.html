@@ -19,9 +19,9 @@
                 </md-input-container>
             </div>
         </md-dialog-content>
-        <md-dialog-actions layout="row">
+        <md-dialog-actions layout="row" ng-repeat="parks in vm.parkList.list.data">
             <span flex></span>
-            <md-button class="md-raised" ng-click="vm.addDescription(vm.imageId, vm.description)">
+            <md-button class="md-raised" ng-click="vm.addDescription(vm.imageId, vm.description, parks.parkCode)">
                 Add Caption
             </md-button>
         </md-dialog-actions>

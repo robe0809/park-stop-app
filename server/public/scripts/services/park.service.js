@@ -7,7 +7,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     self.image = { list: [] };
     self.userImage = { list: [] };
     self.reviewList = { list: [] };
-    self.descriptions = { list: [] };
+    self.description = {};
 
     // ********* Photo Uploads *********
     self.openPicker = function (userId, parkCode, image) {
@@ -73,20 +73,19 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     }
 
     // ********* Adding Photo Descriptions *********
-    self.addDescription = function (imageId, description) {
+    self.addDescription = function (imageId, description, parkId) {
         let newDescription =
             {
                 description,
-            }
-            console.log('description', description);
-            
+            };
         $http.post(`/api/user/parks/gallery/${imageId}`, newDescription)
             .then(function (response) {
-                console.log('successful post', response);
+                console.log('successful post');
+                self.getAllPhotos(parkId);
             })
             .catch(function (error) {
                 console.log('error on post', error);
-            })
+            });
     }
 
     // ********* Adding Reviews *********

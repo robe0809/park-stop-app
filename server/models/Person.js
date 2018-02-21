@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const ImageSchema = new Schema({
     user_id: { type: String, required: true },
     parkId: { type: String, required: true },
-    description: {type: String},
+    description: { type: String },
     imgFile: { type: String, required: true }
 })
 
@@ -22,7 +22,7 @@ const FavoriteSchema = new Schema({
     user_id: { type: String, require: true },
     parkId: { type: String, required: true }
 })
-FavoriteSchema.index({user_id: 1, parkId: 1}, {unique: true});
+FavoriteSchema.index({ user_id: 1, parkId: 1 }, { unique: true });
 
 const PersonSchema = new Schema({
     username: { type: String, required: true, index: { unique: true } },
@@ -37,5 +37,5 @@ let Image = mongoose.model('Image', ImageSchema)
 let Review = mongoose.model('Review', ReviewSchema)
 let Favorite = mongoose.model('Favorite', FavoriteSchema)
 
-module.exports = { Person, Image, Review, Favorite};
+module.exports = { Person, Image, Review, Favorite };
 

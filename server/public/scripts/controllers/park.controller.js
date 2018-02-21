@@ -4,7 +4,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     var self = this;
     let parkCode;
 
-    // From User Service 
+    // From User and Favorite Services
     self.userService = UserService;
     self.parkList = UserService.parkList;
     self.userName = UserService.userName;
@@ -13,6 +13,13 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.favoriteList = FavoriteService.favoriteList;
 
     console.log('userObject', self.userObject);
+    let thisIndex;
+
+    self.setIndex = function (index) {
+        console.log(index);
+
+        thisIndex = index
+    };
 
     // From Filestack Service
     self.image = ParkService.image;
@@ -366,9 +373,14 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     function DialogController($mdDialog) {
         var self = this;
 
-        self.imageId;
+
+        console.log('index', self.imageId);
+
         self.image = ParkService.image;
+        self.imageId = self.image.list[thisIndex]._id;
         self.userObject = UserService.userObject;
+        self.parkList = UserService.parkList;
+
 
         self.hide = function () {
             $mdDialog.hide();
@@ -378,12 +390,10 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
             $mdDialog.cancel();
         };
 
-        self.addDescription = function (user_id, imageId, description) {
-            ParkService.addDescription(user_id, imageId, description)
-        }
-
-        for (let i = 0; i < self.image.list.length; i++) {
-            self.imageId = self.image.list[i]._id;
+        self.addDescription = function (imageId, description, parkId) {
+            console.log(self.imageId);
+            ParkService.addDescription(imageId, description, parkId)
+            $mdDialog.cancel();
         }
 
 
