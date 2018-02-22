@@ -2,8 +2,51 @@ const express = require('express');
 const encryptLib = require('../modules/encryption');
 const Person = require('../models/Person');
 const userStrategy = require('../strategies/user.strategy');
-
 const router = express.Router();
+const env = require('dotenv');
+const axios = require('axios');
+
+// *************** get request to api for park information ***************
+router.get('/parkInfo/:parkCode/', (req, res) => {
+  const url = `https://developer.nps.gov/api/v1/parks`
+  const config = {
+    params: {
+      parkCode: req.params.parkCode,
+      api_key: process.env.API_KEY,
+    }
+  }
+  axios.get(url, config)
+    .then(function (response) {
+      console.log(response.data);
+      res.send(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
+
+// *************** get request to api for articles and events ***************
+router.get('/parkInfo/:currentNavItem/:parkSelected/', (req, res) => {
+  let navItem = req.params.currentNavItem;
+  const url = `https://developer.nps.gov/api/v1/${navItem}`;
+
+  const config = {
+    params: {
+      parkCode: req.params.parkSelected,
+      api_key: process.env.API_KEY,
+    }
+  }
+  axios.get(url, config)
+    .then(function (response) {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+      res.sendStatus(500);
+    });
+})
 
 // *************** Authentication ***************
 // Handles Ajax request for user information if user is authenticated

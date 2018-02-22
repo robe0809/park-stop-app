@@ -72,7 +72,10 @@ body, html {
   text-align: center;
   font-size: x-large;
 }
-.parkDescription {
+.parkLocation {
+  text-decoration: underline;
+}
+.parkDescription, .parkLocation {
   text-align: center;
   font-size: larger;
   line-height: 300%;

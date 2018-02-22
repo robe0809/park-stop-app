@@ -13,12 +13,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.infoList = UserService.infoList;
     self.favoriteList = FavoriteService.favoriteList;
 
-    self.setIndex = function (index) {
-        console.log(index);
-
-        thisIndex = index
-    };
-
     // From Filestack Service
     self.image = ParkService.image;
     self.userImage = ParkService.userImage;
@@ -365,6 +359,12 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
             targetEvent: ev,
             clickOutsideToClose: true
         })
+    };
+
+    // ************* gets index of image *************
+    self.setIndex = function (index) {
+        console.log(index);
+        thisIndex = index
     };
 
     // Modal Controller

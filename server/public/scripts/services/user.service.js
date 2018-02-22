@@ -299,9 +299,8 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
 
     // ********* Getting Park Description *********
     self.parkDescription = function (parkSelected) {
-        let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
-        // getting each park by parkCode
-        $http.get(`https://developer.nps.gov/api/v1/parks?parkCode=${parkSelected.code}&` + apiKey)
+        let parkCode = parkSelected.code;
+        $http.get('/api/user/parkInfo/'+ parkCode)
             .then(function (response) {
                 self.parkList.list = response.data;
                 console.log('successful get parks', self.parkList.list);
@@ -314,12 +313,10 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
 
     // ********* Getting Park Information (articles/events) *********
     self.parkInfo = function (currentNavItem, parkSelected) {
-        let apiKey = 'api_key=iDOsJBB3crCSr0az2nRrlnwF6wYA01eSVGRJMn0v';
-        // getting each park by parkCode
-        $http.get(`https://developer.nps.gov/api/v1/${currentNavItem}?parkCode=${parkSelected}&` + apiKey)
+        $http.get(`/api/user/parkInfo/${currentNavItem}/${parkSelected}`)
             .then(function (response) {
                 self.infoList.list = response.data;
-                console.log('successful get parks', self.infoList.list);
+                console.log('successful get parks', self.infoList);
                 $location.path(`/parks/${currentNavItem}`);
             })
             .catch(function (error) {

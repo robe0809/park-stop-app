@@ -37,6 +37,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
                 parkId,
                 imgFile,
             }
+            
         $http.post(`/api/user/parks/gallery`, newImage)
             .then(function (response) {
                 console.log('successful post', response);

@@ -2,9 +2,12 @@ const env = require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const axios = require('axios');
 const passport = require('./strategies/user.strategy');
 const sessionConfig = require('./modules/session-middleware');
+
+// Listening on port
+var port = process.env.PORT;
 
 //DB Module
 const db = require('./modules/db.config.js');
@@ -35,9 +38,7 @@ app.use('/api/user/', favoriteRouter);
 // Serve static files
 app.use(express.static('server/public'));
 
-const PORT = process.env.PORT || 5000;
-
 /** Listen * */
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+app.listen(port, () => {
+    console.log(`Listening on port: ${port}`);
 });

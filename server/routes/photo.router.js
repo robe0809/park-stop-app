@@ -2,7 +2,7 @@ const express = require('express');
 const encryptLib = require('../modules/encryption');
 const Person = require('../models/Person');
 const userStrategy = require('../strategies/user.strategy');
-
+const axios = require('axios');
 const router = express.Router();
 
 // *************** Getting All Photos ***************
