@@ -3,7 +3,8 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
 
     var self = this;
     let parkCode;
-
+    let thisIndex;
+    
     // From User and Favorite Services
     self.userService = UserService;
     self.parkList = UserService.parkList;
@@ -11,9 +12,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.userObject = UserService.userObject;
     self.infoList = UserService.infoList;
     self.favoriteList = FavoriteService.favoriteList;
-
-    console.log('userObject', self.userObject);
-    let thisIndex;
 
     self.setIndex = function (index) {
         console.log(index);
@@ -314,6 +312,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         }
     ]
 
+
     // Favorites parks And adds them to the favorites page. 
     self.favoritePark = function (parkName, userId, parkId) {
         FavoriteService.favoritePark(parkName, userId, parkId);
@@ -323,7 +322,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.parkDescription = function (parkSelected) {
         UserService.parkDescription(parkSelected);
     }
-
 
     // Getting park articles and events
     self.parkInfo = function (currentNavItem, parkSelected) {
