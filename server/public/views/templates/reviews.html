@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
 
-<div layout="row" layout-align="end">
+<div layout="row" layout-align="start">
     <md-button id="reviewButton" class="md-raised" ng-click="vm.showAdvanced()" layout-align="end">Add Review</md-button>
 </div>
 <div class="reviewBody" layout="column" ng-repeat="parks in vm.parkList.list.data">

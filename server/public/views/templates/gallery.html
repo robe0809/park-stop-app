@@ -5,7 +5,7 @@
     <h1 class="photoHeader">Photos of {{parks.name}} National Park</h1>
 </div>
 
-<md-button class="md-raised" layout="row" layout-align="center end" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>
+<md-button class="md-raised" layout="column" layout-align="center end" ng-click="vm.openPicker(vm.userObject._id, vm.parkList.list.data, images.url)">Add Photo</md-button>
 
 <div class="photoContainer">
     <md-card class="whiteframe" ng-repeat="images in vm.image.list">
