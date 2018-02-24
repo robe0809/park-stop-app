@@ -29,7 +29,6 @@ Link to software that is required to install the app (e.g. node).
 ### Installing
 
 - Fork and Clone
-- ```use park-stop```
 - ```npm install```
 
 ## Screen Shot
