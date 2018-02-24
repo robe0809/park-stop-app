@@ -2,7 +2,8 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Sintony', sans-serif;
+  text-transform: uppercase;
   font-size: 14px;
 }
 
@@ -19,19 +20,21 @@ body, html {
   margin-top: 0 auto; 
 }
 .homeTitle {
-  color:rgb(48,48,48);
-  background-color: lightgrey;
-  width: 30%;
+  color:rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  /* background-color: lightgrey; */
+  padding: 20px;
+  /* width: 30%; */
   text-align: center;
-  font-size: xx-large;
+  font-size: 4.6rem;
   border-radius: 5px;
-  opacity: .8;
+  /* opacity: .8; */
 }
 .selectContainer {
   width: 40%;
   background-color:  rgb(48,48,48);
   border-radius: 5px;
-  opacity: .9;
+  /* opacity: .9; */
   text-align: center;
   color: rgba(255,255,255,0.7);
 }
@@ -53,16 +56,20 @@ body, html {
 .parkNavName {
   background-color: lightGrey;
   opacity: .8;
-  width: 400px;
+  text-transform: uppercase;
+  /* width: 400px; */
   border-radius: 5px;
   padding: 20px;
   margin: 0 auto;
-  font-size: xx-large;
   color: rgb(48,48,48);
+  font-size: 4.6rem;
+}
+.icon-red svg {
+  fill: deeppink;
 }
 /* *********** Park Description View  *********** */
 .parkDescriptionView {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   border-left: 2px solid rgba(255,255,255,0.7);
   border-right: 2px solid rgba(255,255,255,0.7);
@@ -77,7 +84,7 @@ body, html {
 }
 .parkDescription, .parkLocation {
   text-align: center;
-  font-size: larger;
+  font-size: 1.6rem;
   line-height: 300%;
 }
 /* *********** Park Articles View *********** */
@@ -176,6 +183,11 @@ md-toast {
   height: 200px;
 }
 /* *********** Login/Register Styles *********** */
+.userHeader {
+  -webkit-font-smoothing: antialiased;
+  -webkit-background-clip: text;
+  font-size: 4.6rem;
+}
 .formContainer {
   width: 20%;
   margin: 0 auto;

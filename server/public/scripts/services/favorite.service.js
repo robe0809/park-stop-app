@@ -35,7 +35,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
                 };
             })
             .catch(function (error) {
-                console.log('error on favorite post', error.error);
+                console.log('error on favorite post', error);
             })
     }
 

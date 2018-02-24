@@ -1,4 +1,4 @@
-myApp.controller('ReviewController', ['UserService', 'ParkService', '$mdDialog', function (UserService, ParkService, $mdDialog) {
+myApp.controller('ReviewController', ['UserService', 'ParkService', 'FavoriteService', '$mdDialog', function (UserService, ParkService, FavoriteService, $mdDialog) {
     console.log('ReviewController created');
 
     var self = this;
@@ -299,7 +299,12 @@ myApp.controller('ReviewController', ['UserService', 'ParkService', '$mdDialog',
             picture: "/assets/zion.jpg"
         }
     ]
-    
+
+    // Favorites parks And adds them to the favorites page. 
+    self.favoritePark = function (parkName, userId, parkId) {
+        FavoriteService.favoritePark(parkName, userId, parkId);
+    }
+
     // Using this function to enable users to see all reviews for each park
     // when hittin the reviews tab. 
     self.parkInfo = function (currentNavItem, parkSelected) {
