@@ -300,7 +300,7 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
     // ********* Getting Park Description *********
     self.parkDescription = function (parkSelected) {
         let parkCode = parkSelected.code;
-        $http.get('/api/user/parkInfo/'+ parkCode)
+        $http.get('/api/user/parkInfo/' + parkCode)
             .then(function (response) {
                 self.parkList.list = response.data;
                 console.log('successful get parks', self.parkList.list);

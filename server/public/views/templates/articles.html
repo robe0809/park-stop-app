@@ -7,8 +7,7 @@
         <md-card class="articlCards" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-repeat="articles in vm.infoList.list.data">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">{{articles.title}}</span>
-                    <span class="md-subhead">{{articles.listingDescription}}</span>
+                    <span id="articleTitle" class="md-headline">{{articles.title}}</span>
                 </md-card-title-text>
                 <md-card-title-media>
                     <figure class="md-media-lg card-media">
@@ -16,6 +15,9 @@
                     </figure>
                 </md-card-title-media>
             </md-card-title>
+            <md-card-content>
+                <p>{{articles.listingDescription}}</p>
+            </md-card-content>
             <md-card-actions layout="row" layout-align="center end">
                 <a target="_blank" href="{{articles.url}}">
                     <md-button class="md-raised md-primary">Read Article</md-button>

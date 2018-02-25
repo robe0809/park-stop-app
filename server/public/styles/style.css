@@ -102,6 +102,10 @@ body, html {
   height: 200px;
   width: 5%;
 }
+#articleTitle {
+  display: flex;
+  flex-wrap: wrap;
+}
 /* *********** Park Events View *********** */
 
 /* *********** Park Gallery View *********** */
@@ -109,6 +113,7 @@ body, html {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .photoHeader {
   text-align: center;

@@ -23,7 +23,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
             user_id,
             parkId,
         }
-        
+
         return $http.post('/api/user/favorites', newFavorite)
             .then(function (response) {
                 if (response.data.response) {

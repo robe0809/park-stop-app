@@ -37,7 +37,7 @@ router.post('/favorites', (req, res) => {
 
         newFavorite.save((error, FavoriteDoc) => {
             if (error) {
-                res.send({error: 500, response: "You have already favorited this park!"});
+                res.send({ error: 500, response: "You have already favorited this park!" });
             } else {
                 console.log('saved new favoirteDoc', FavoriteDoc);
                 Person.Person.findByIdAndUpdate(

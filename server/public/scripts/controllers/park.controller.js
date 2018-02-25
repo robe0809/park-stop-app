@@ -4,7 +4,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     var self = this;
     let parkCode;
     let thisIndex;
-    
+
     // From User and Favorite Services
     self.userService = UserService;
     self.parkList = UserService.parkList;

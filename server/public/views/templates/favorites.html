@@ -8,8 +8,12 @@
           <h1 class="md-headline">{{favorites.parkName}}</h1>
         </md-card-header-text>
       </md-card-header>
-      <div class="favoriteImgContainer" ng-repeat="nationalPark in vm.nationalPark" ng-if="nationalPark.code === favorites.parkId" md-whiteframe="24"  layout layout-align="center center">
-          <a href='#!parks/description'><img id="favoriteImg" ng-src="{{nationalPark.picture}}"  ng-click="vm.parkDescription(nationalPark)" class="md-card-image"  alt="Washed Out"></a>
+      <div class="favoriteImgContainer" ng-repeat="nationalPark in vm.nationalPark" ng-if="nationalPark.code === favorites.parkId"
+        md-whiteframe="24" layout layout-align="center center">
+        <a href='#!parks/description'>
+          <img id="favoriteImg" ng-src="{{nationalPark.picture}}" ng-click="vm.parkDescription(nationalPark)" class="md-card-image"
+            alt="Washed Out">
+        </a>
       </div>
       <md-card-title>
         <md-card-title-text>
