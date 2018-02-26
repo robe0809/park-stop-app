@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Mongo Connection //
-let mongoURI = '';
+let mongoURI = 'mongodb://park-stop:nationalpark@ds249398.mlab.com:49398/park-stop';
 // process.env.MONGODB_URI will only be defined if you
 // are running on Heroku
 if (process.env.MONGODB_URI != undefined) {
