@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user/', userRouter);
+app.use('/api/user', userRouter);
 app.use('/api/user/', photoRouter);
 app.use('/api/user/', reviewRouter);
 app.use('/api/user/', favoriteRouter);
