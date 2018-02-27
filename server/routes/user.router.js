@@ -8,7 +8,7 @@ const axios = require('axios');
 
 // *************** get request to api for park information ***************
 router.get('/parkInfo/:parkCode/', (req, res) => {
-  const url = `https://developer.nps.gov/api/v1/parks`
+  const url = `https://developer.nps.gov/api/v1/parks/`
   const config = {
     params: {
       parkCode: req.params.parkCode,
@@ -29,7 +29,7 @@ router.get('/parkInfo/:parkCode/', (req, res) => {
 // *************** get request to api for articles and events ***************
 router.get('/parkInfo/:currentNavItem/:parkSelected/', (req, res) => {
   let navItem = req.params.currentNavItem;
-  const url = `https://developer.nps.gov/api/v1/${navItem}`;
+  const url = `https://developer.nps.gov/api/v1/${navItem}/`;
 
   const config = {
     params: {
