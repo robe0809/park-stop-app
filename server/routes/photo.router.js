@@ -2,8 +2,15 @@ const express = require('express');
 const encryptLib = require('../modules/encryption');
 const Person = require('../models/Person');
 const userStrategy = require('../strategies/user.strategy');
-
+const nationalPark = require('../modules/nationalPark').nationalPark;
 const router = express.Router();
+
+// *************** Getting All NationalPark Info ***************
+
+router.get('/nationalParks', (req, res) => {
+  console.log('park arr', nationalPark.nationalPark);
+  res.send(nationalPark);
+})
 
 // *************** Getting All Photos ***************
 router.get('/parks/gallery/:id', (req, res) => {
