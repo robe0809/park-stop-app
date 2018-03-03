@@ -26,7 +26,9 @@
                 </h2>
                 <p>{{events.abstract}}</p>
             </div>
-            <div class="md-media-sm card-media">
+
+            <!-- Dates of the Event -->
+            <div class="md-media-sm card-media" ng-if="events.recurrence.startDate">
                 <h2>
                     <strong>When:</strong>
                 </h2>
@@ -36,6 +38,13 @@
                 <p>{{events.recurrence.endDate | date:'fullDate'}}</p>
                 <label class="eventDates">Frequency:</label>
                 <p>{{events.recurrence.frequency}}</p>
+            </div>
+
+            <div ng-if="!events.recurrence.startDate">
+                <h2>
+                    <strong>When:</strong>
+                </h2> 
+                <p>{{events.dates}}</p>
             </div>
         </md-card-content>
 
