@@ -3,7 +3,6 @@ myApp.controller('ReviewController', ['UserService', 'ParkService', 'FavoriteSer
 
     var self = this;
 
-    let parkCode;
     // From User Service 
     self.userService = UserService;
     self.parkList = UserService.parkList;
@@ -11,10 +10,10 @@ myApp.controller('ReviewController', ['UserService', 'ParkService', 'FavoriteSer
     self.userName = UserService.userName;
     self.infoList = UserService.infoList;
     self.reviewList = ParkService.reviewList;
-
     self.nationalPark = UserService.nationalPark;
+
     // Using this function to enable users to see all reviews for each park
-    // when hittin the reviews tab. 
+    // when clicking the reviews tab. 
     self.parkInfo = function (currentNavItem, parkSelected) {
         if (currentNavItem == 'gallery') {
             console.log('parkSelect'.parkSelected);
@@ -48,7 +47,7 @@ myApp.controller('ReviewController', ['UserService', 'ParkService', 'FavoriteSer
         })
     };
 
-    // Modal Controller
+    // ************* Function for Modal Controller *************
     function DialogController($mdDialog) {
         var self = this;
         self.firstRate = 0;

@@ -7,7 +7,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     self.image = { list: [] };
     self.userImage = { list: [] };
     self.reviewList = { list: [] };
-    self.description = {};
+
 
     // ********* Photo Uploads *********
     self.openPicker = function (userId, parkCode, image) {
@@ -17,12 +17,12 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
         }).then(function (response) {
             self.image.list = response.filesUploaded;
             console.log('response from filestack', self.image.list);
-            // declare this function to handle response
+            // addPhotos handles openPicker response
             self.addPhotos(userId, parkCode, self.image.list);
-            // do something w/ the response data
         });
     }
-    // function to handle filestack photo in openPicker function 
+
+    // ********* Posting Photos ********* 
     self.addPhotos = function (user_id, parkId, response) {
         // loop through response array to get image url from filestack. 
         for (let i = 0; i < response.length; i++) {

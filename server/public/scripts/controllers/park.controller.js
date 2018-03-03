@@ -18,7 +18,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.userImage = ParkService.userImage;
     self.nationalPark = UserService.nationalPark;
 
-
     // Favorites parks And adds them to the favorites page. 
     self.favoritePark = function (parkName, userId, parkId) {
         FavoriteService.favoritePark(parkName, userId, parkId);
@@ -79,7 +78,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
         thisIndex = index
     };
 
-    // Modal Controller
+    // ************* Controller function for Modal *************
     function DialogController($mdDialog) {
         var self = this;
 

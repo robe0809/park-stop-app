@@ -1,12 +1,18 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
 <div class="homeBackground">
+
+    <!-- Title of home view -->
     <div class="homeForm" layout="column" layout-align="center center">
         <h1 class="homeTitle">Choose Your Park</h1>
+
+        <!-- Dropdown menu to choose any National Park in the U.S -->
         <md-input-container layout="column" layout-align="stretch" class='selectContainer'>
             <label style="color:rgb(48,48,48)">National Park</label>
             <md-select ng-model="vm.parkSelected" ng-change="vm.parkDescription(vm.parkSelected)" placeholder="Choose Your National Park">
                 <md-option ng-value="park" ng-repeat="park in vm.nationalPark">{{park.name}}</md-option>
             </md-select>
         </md-input-container>
+
     </div>
+
 </div>

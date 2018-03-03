@@ -4,6 +4,7 @@
 <div>
 
     <div class="parkArticlesView" flex-xs flex-gt-xs="50" layout="column">
+        <!-- article card containing description and photo -->
         <md-card class="articlCards" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-repeat="articles in vm.infoList.list.data">
             <md-card-title>
                 <md-card-title-text>
@@ -24,6 +25,7 @@
                 </a>
             </md-card-actions>
         </md-card>
+        
     </div>
 
 </div>

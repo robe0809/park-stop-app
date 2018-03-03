@@ -2,25 +2,43 @@
 <div ng-include="'views/partials/parkNav.html'"></div>
 <div>
 
+    <!-- Card for each event at each national park -->
     <md-card ng-repeat="events in vm.infoList.list.data">
+
+        <!-- Event title and location-->
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{events.title}}</span>
                 <span class="md-subhead">
-                    <strong>Where:</strong>
+                    <h2>
+                        <strong>Where:</strong>
+                    </h2>
                     <p>{{events.location}}</p>
                 </span>
             </md-card-title-text>
         </md-card-title>
+
+        <!-- Dates of events and a general description of what the event is -->
         <md-card-content>
             <div>
-                <strong>What:</strong>
+                <h2>
+                    <strong>What:</strong>
+                </h2>
                 <p>{{events.abstract}}</p>
             </div>
             <div class="md-media-sm card-media">
-                <strong>When:</strong>
-                <p>{{events.dates}}</p>
+                <h2>
+                    <strong>When:</strong>
+                </h2>
+                <label class="eventDates">Start Date:</label>
+                <p>{{events.recurrence.startDate | date:'fullDate'}}</p>
+                <label class="eventDates">End Date:</label>
+                <p>{{events.recurrence.endDate | date:'fullDate'}}</p>
+                <label class="eventDates">Frequency:</label>
+                <p>{{events.recurrence.frequency}}</p>
             </div>
         </md-card-content>
+
     </md-card>
+    
 </div>
