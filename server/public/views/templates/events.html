@@ -1,19 +1,19 @@
 <div class="homeNav" ng-include="'views/partials/nav.html'"></div>
 <div ng-include="'views/partials/parkNav.html'"></div>
-<div>
+<div class="eventCard">
 
     <!-- Card for each event at each national park -->
-    <md-card ng-repeat="events in vm.infoList.list.data">
+    <md-card ng-repeat="events in vm.infoList.list.data" layout="column" layout-align="center center">
 
         <!-- Event title and location-->
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{events.title}}</span>
                 <span class="md-subhead">
-                    <h2>
-                        <strong>Where:</strong>
+                    <h2 class="eventHeader">
+                        <strong>Where</strong>
                     </h2>
-                    <p>{{events.location}}</p>
+                    <p class="eventContent">{{events.location}}</p>
                 </span>
             </md-card-title-text>
         </md-card-title>
@@ -21,30 +21,27 @@
         <!-- Dates of events and a general description of what the event is -->
         <md-card-content>
             <div>
-                <h2>
-                    <strong>What:</strong>
+                <h2 class="eventHeader">
+                    <strong>What</strong>
                 </h2>
-                <p>{{events.abstract}}</p>
+                <p class="eventContent">{{events.abstract}}</p>
             </div>
 
             <!-- Dates of the Event -->
             <div class="md-media-sm card-media" ng-if="events.recurrence.startDate">
-                <h2>
-                    <strong>When:</strong>
+                <h2 class="eventHeader">
+                    <strong>When</strong>
                 </h2>
-                <label class="eventDates">Start Date:</label>
-                <p>{{events.recurrence.startDate | date:'fullDate'}}</p>
-                <label class="eventDates">End Date:</label>
-                <p>{{events.recurrence.endDate | date:'fullDate'}}</p>
-                <label class="eventDates">Frequency:</label>
-                <p>{{events.recurrence.frequency}}</p>
+                <p class="eventContent">Start Date: {{events.recurrence.startDate | date:'fullDate'}}</p>
+                <p class="eventContent">End Date: {{events.recurrence.endDate | date:'fullDate'}}</p>
+                <p class="eventContent">Frequency: {{events.recurrence.frequency}}</p>
             </div>
 
             <div ng-if="!events.recurrence.startDate">
-                <h2>
-                    <strong>When:</strong>
+                <h2 class="eventHeader">
+                    <strong>When</strong>
                 </h2> 
-                <p>{{events.dates}}</p>
+                <p class="eventContent">{{events.dates}}</p>
             </div>
         </md-card-content>
 

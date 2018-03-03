@@ -90,7 +90,7 @@ body, html {
 /* *********** Park Articles View *********** */
 
 .parkArticlesView {
-  width: 80%;
+  width: 60%;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -100,14 +100,25 @@ body, html {
 }
 .md-card {
   height: 200px;
-  width: 5%;
+  width: 100%;
 }
 #articleTitle {
   display: flex;
   flex-wrap: wrap;
 }
 /* *********** Park Events View *********** */
-.eventDates {
+.eventCard {
+  width: 60%;
+  margin: 0 auto;
+  border-left: 2px solid rgba(255,255,255,0.7);
+  border-right: 2px solid rgba(255,255,255,0.7);
+  padding: 30px;
+}
+.eventContent {
+  text-align: center;
+}
+.eventHeader {
+  text-align: center;
   text-decoration: underline;
 }
 /* *********** Park Gallery View *********** */
