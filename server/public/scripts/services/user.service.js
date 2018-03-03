@@ -2,7 +2,6 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
     console.log('UserService Loaded');
 
     var self = this;
-    let parkPhotos;
 
     self.userObject = {};
     self.userName = {};
@@ -13,16 +12,16 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
     // ********* Getting nationalPark info *********
     self.nationalPark = function () {
         $http.get('/api/user/nationalParks')
-        .then(function (response) {
-            console.log('national park arr', response.data);
-            self.nationalPark = response.data;
-        })
-        .catch(function (error) {
-            console.log('error on getting park arr', error);
-        })
+            .then(function (response) {
+                console.log('national park arr', response.data);
+                self.nationalPark = response.data;
+            })
+            .catch(function (error) {
+                console.log('error on getting park arr', error);
+            })
     }
     self.nationalPark();
-    
+
     // ********* Getting Park Description *********
     self.parkDescription = function (parkSelected) {
         let parkCode = parkSelected.code;
@@ -42,7 +41,7 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
         $http.get(`/api/user/parkInfo/${currentNavItem}/${parkSelected}`)
             .then(function (response) {
                 self.infoList.list = response.data;
-                console.log('successful get parks', self.infoList);
+                console.log('successful get parks', self.infoList.list);
                 $location.path(`/parks/${currentNavItem}`);
             })
             .catch(function (error) {

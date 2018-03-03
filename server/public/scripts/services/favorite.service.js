@@ -2,16 +2,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
     console.log('FavoriteService Loaded');
 
     var self = this;
-    let favoriteArr;
-    let isDuplicate;
-    let last = {
-        bottom: false,
-        top: true,
-        left: false,
-        right: true
-    };
 
-    self.FavoriteObject = {};
     self.parkList = { list: [] };
     self.infoList = { list: [] };
     self.favoriteList = { list: [] };
@@ -39,7 +30,14 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
             })
     }
 
-    // toast to let users know that they have favorited a park.
+    // ********* Positioning of toast *********
+    let last = {
+        bottom: false,
+        top: true,
+        left: false,
+        right: true
+    };
+    
     self.toastPosition = angular.extend({}, last);
 
     self.getToastPosition = function () {
@@ -48,6 +46,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
             .join(' ');
     };
 
+    // ********* Toast informing users that they have favorited a park *********
     self.showSimpleToast = function () {
         var pinTo = self.getToastPosition();
 
@@ -59,7 +58,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
         );
     };
 
-    // gets all favorites for whoever is logged in  and displays them on the DOM. 
+    // ********* Getting Favorites from database *********
     self.getFavorites = function (user_id) {
         $http.get(`/api/user/favorites/${user_id}`)
             .then(function (response) {
@@ -72,6 +71,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
             })
     }
 
+    // ********* Deleting favorites from database *********
     self.deleteFavorites = function (favoriteId) {
         $http.delete(`/api/user/favorites/${favoriteId}`)
             .then(function (response) {

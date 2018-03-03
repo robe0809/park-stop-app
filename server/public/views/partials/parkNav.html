@@ -1,10 +1,14 @@
 <md-content class="parkNavHeader" class="md-padding" ng-repeat="parks in vm.parkList.list.data">
+
+  <!-- Favorite button  -->
   <div layout="row" layout-align="start start">
     <md-button ng-click="vm.favoritePark(parks.name, vm.userObject._id, parks.parkCode)">
       <md-icon class="large material-icons icon-red" md-svg-src="../../assets/svg/favorite.svg"></md-icon>
       Favorite Park
     </md-button>
   </div>
+
+  <!-- Background image and name of current park -->
   <div layout="row" layout-align="center center" ng-repeat="nationalPark in vm.nationalPark" ng-if="nationalPark.code === parks.parkCode">
     <style>
       .parkNavHeader {
@@ -15,7 +19,10 @@
       {{parks.name}}
     </h1>
   </div>
+
 </md-content>
+
+<!-- Nav bar for each view of the current park -->
 <div layout="column" layout-align="center center">
   <md-nav-bar md-no-ink-bar="disableInkBar" md-selected-nav-item="vm.currentNavItem" nav-bar-aria-label="navigation links"
     ng-repeat="parks in vm.parkList.list.data" flex=20>

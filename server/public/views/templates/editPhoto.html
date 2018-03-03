@@ -1,5 +1,9 @@
 <md-dialog aria-label="Mango (Fruit)">
+
+    <!-- modal for adding photo descriptions -->
     <form ng-cloak>
+
+        <!-- Header of Modal -->
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Hello, {{vm.userObject.username}}!</h2>
@@ -10,6 +14,7 @@
             </div>
         </md-toolbar>
 
+        <!-- top section of Modal -->
         <md-dialog-content>
             <div class="md-dialog-content" layout="column">
                 <h3>Add a description</h3>
@@ -19,11 +24,15 @@
                 </md-input-container>
             </div>
         </md-dialog-content>
+
+        <!-- text area of modal and submit button -->
         <md-dialog-actions layout="row" ng-repeat="parks in vm.parkList.list.data">
             <span flex></span>
             <md-button class="md-raised" ng-click="vm.addDescription(vm.imageId, vm.description, parks.parkCode)">
                 Add Caption
             </md-button>
         </md-dialog-actions>
+
     </form>
+
 </md-dialog>

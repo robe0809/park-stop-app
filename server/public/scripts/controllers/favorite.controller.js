@@ -2,7 +2,7 @@ myApp.controller('FavoriteController', ['UserService', 'FavoriteService', functi
     console.log('FavoriteController created');
 
     var self = this;
-    let parkId;
+
     self.userService = UserService;
     self.userObject = UserService.userObject;
     self.userName = UserService.userName;

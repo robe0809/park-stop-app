@@ -107,7 +107,9 @@ body, html {
   flex-wrap: wrap;
 }
 /* *********** Park Events View *********** */
-
+.eventDates {
+  text-decoration: underline;
+}
 /* *********** Park Gallery View *********** */
 .photoContainer {
   width: 100%;

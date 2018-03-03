@@ -1,7 +1,10 @@
 <div layout="row" layout-align="space-between end" class="md-margin" id="navHeader">
-  <h4 id="welcome">Hello, {{vm.userName.username}}!</h4>
-  <md-content class="navBarHome" layout="row" layout-align="center center">
 
+  <!-- Users name -->
+  <h4 id="welcome">Hello, {{vm.userName.username}}!</h4>
+
+  <!-- Nav bar directing users to "home" or "favorites" views -->
+  <md-content class="navBarHome" layout="row" layout-align="center center">
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links" flex=100>
       <div>
         <md-nav-item id="home" md-nav-href="#!home" name="Home">Home</md-nav-item>
@@ -9,9 +12,11 @@
           value="favorites">Favorites</md-nav-item>
       </div>
     </md-nav-bar>
-
   </md-content>
+
+  <!-- Logout Button -->
   <md-button ng-click="vm.userService.logout()">
     Logout
   </md-button>
+  
 </div>
