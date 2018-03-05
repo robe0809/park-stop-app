@@ -32,7 +32,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider', funct
         }
       }
     })
-
     // routes to description page
     .when('/parks/description', {
       templateUrl: '/views/templates/description.html',

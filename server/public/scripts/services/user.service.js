@@ -27,7 +27,7 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
         let parkCode = parkSelected.code;
         $http.get('/api/user/parkInfo/' + parkCode)
             .then(function (response) {
-                self.parkList.list = response.data;
+                self.parkList.list = response.data.data[0];
                 console.log('successful get parks', self.parkList.list);
                 $location.path("/parks/description")
             })
@@ -35,7 +35,7 @@ myApp.service('UserService', ['$http', '$location', function ($http, $location) 
                 console.log('error on getting parks', error);
             });
     }
-
+    
     // ********* Getting Park Information (articles/events) *********
     self.parkInfo = function (currentNavItem, parkSelected) {
         $http.get(`/api/user/parkInfo/${currentNavItem}/${parkSelected}`)

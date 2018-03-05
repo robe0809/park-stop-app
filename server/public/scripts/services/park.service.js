@@ -5,7 +5,6 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
     var fsClient = filestack.init('Ap5iwWk6nRwOwoqPQ3vZ9z');
 
     self.image = { list: [] };
-    self.userImage = { list: [] };
     self.reviewList = { list: [] };
 
 
@@ -119,6 +118,7 @@ myApp.service('ParkService', ['$http', '$location', function ($http, $location) 
                 console.log('error on post', error);
             })
     }
+
     // ********* Deleting User Reviews ********* 
     self.deleteReview = function (reviewId) {
         console.log(reviewId);

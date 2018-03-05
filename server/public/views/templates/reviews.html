@@ -4,10 +4,10 @@
 <div layout="row" layout-align="start">
     <md-button id="reviewButton" class="md-raised" ng-click="vm.showAdvanced()" layout-align="end">Add Review</md-button>
 </div>
-<div class="reviewBody" layout="column" ng-repeat="parks in vm.parkList.list.data">
+<div class="reviewBody" layout="column">
     <md-toolbar class="md-hue-9">
         <div class="md-toolbar-tools">
-            <h1 id="reviewHeader">{{parks.name}} Reviews</h1>
+            <h1 id="reviewHeader">{{vm.parkList.list.name}} Reviews</h1>
         </div>
     </md-toolbar>
 
@@ -22,7 +22,7 @@
                     <div style="width: 100px"></div>
                 </div>
                 <div>
-                    <md-button class="md-raised" ng-if="vm.userObject._id == userReviews.user_id" ng-click="vm.deleteReview(userReviews._id, parks.parkCode)"
+                    <md-button class="md-raised" ng-if="vm.userObject._id == userReviews.user_id" ng-click="vm.deleteReview(userReviews._id, vm.parkList.list.parkCode)"
                         md-padding>
                         Delete Review
                     </md-button>

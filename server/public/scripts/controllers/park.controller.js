@@ -15,7 +15,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
 
     // From Filestack Service
     self.image = ParkService.image;
-    self.userImage = ParkService.userImage;
     self.nationalPark = UserService.nationalPark;
 
     // Favorites parks And adds them to the favorites page. 
@@ -27,6 +26,7 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
     self.parkDescription = function (parkSelected) {
         UserService.parkDescription(parkSelected);
     }
+
 
     // Getting park articles and events
     self.parkInfo = function (currentNavItem, parkSelected) {
@@ -42,22 +42,13 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
 
     // Deletes Users photos 
     self.deleteUserPhotos = function (imageId, parkId) {
-        for (let i = 0; i < parkId.length; i++) {
-            parkCode = parkId[i].parkCode;
-        }
         ParkService.deleteUserPhotos(imageId);
-        ParkService.getAllPhotos(parkCode);
+        ParkService.getAllPhotos(parkId);
     }
 
     // Filestack function for uploading photos
     self.openPicker = function (userId, parkId, image) {
-        // loops through parkList to get the parkCode
-        // this allows the parkCode to be sent and stored with the image
-        // as well as the user ID.
-        for (let i = 0; i < parkId.length; i++) {
-            parkCode = parkId[i].parkCode;
-        }
-        ParkService.openPicker(userId, parkCode, image);
+        ParkService.openPicker(userId, parkId, image);
     }
 
     // ************* Modal for Edit *************
@@ -74,7 +65,6 @@ myApp.controller('ParkController', ['UserService', 'ParkService', 'FavoriteServi
 
     // ************* gets index of image *************
     self.setIndex = function (index) {
-        console.log(index);
         thisIndex = index
     };
 

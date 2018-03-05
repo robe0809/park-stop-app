@@ -29,7 +29,7 @@ myApp.service('FavoriteService', ['$http', '$location', '$mdToast', function ($h
                 console.log('error on favorite post', error);
             })
     }
-
+    
     // ********* Positioning of toast *********
     let last = {
         bottom: false,

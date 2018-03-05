@@ -26,9 +26,9 @@
         </md-dialog-content>
 
         <!-- text area of modal and submit button -->
-        <md-dialog-actions layout="row" ng-repeat="parks in vm.parkList.list.data">
+        <md-dialog-actions layout="row">
             <span flex></span>
-            <md-button class="md-raised" ng-click="vm.addDescription(vm.imageId, vm.description, parks.parkCode)">
+            <md-button class="md-raised" ng-click="vm.addDescription(vm.imageId, vm.description, vm.parkList.list.parkCode)">
                 Add Caption
             </md-button>
         </md-dialog-actions>

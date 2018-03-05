@@ -102,6 +102,11 @@ body, html {
   height: 200px;
   width: 100%;
 }
+.articleImg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
 #articleTitle {
   display: flex;
   flex-wrap: wrap;

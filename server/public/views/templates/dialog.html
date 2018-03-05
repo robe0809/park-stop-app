@@ -13,11 +13,11 @@
       </div>
     </md-toolbar>
 
-    <md-dialog-content ng-repeat="park in vm.parkList.list.data">
+    <md-dialog-content>
       <!-- top section of modal (ratings) -->
       <div class="md-dialog-content" layout="column">
-        <h3>How was your trip to {{park.name}} National Park? </h3>
-        <h3>Rate {{park.name}}</h3>
+        <h3>How was your trip to {{vm.parkList.list.name}} National Park? </h3>
+        <h3>Rate {{vm.parkList.list.name}}</h3>
         <!-- first rate is the star count -->
         <jk-rating-stars rating="vm.firstRate"></jk-rating-stars>
         <div style="width: 100px"></div>
@@ -29,9 +29,9 @@
     </md-dialog-content>
 
     <!-- bottom section of modal (review tex area and submit button) -->
-    <md-dialog-actions layout="row" ng-repeat="park in vm.parkList.list.data">
+    <md-dialog-actions layout="row">
       <span flex></span>
-      <md-button class="md-raised" ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, park.parkCode)">
+      <md-button class="md-raised" ng-click="vm.submitReview(vm.userObject.username, vm.userObject._id, vm.firstRate, vm.review, vm.parkList.list.parkCode)">
         Submit Review
       </md-button>
     </md-dialog-actions>
